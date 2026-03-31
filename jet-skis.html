@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jet Skis | Most Litt Party Rides</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 300: '#fde68a', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .font-display { font-family: 'Playfair Display', serif; }
+    .gold-gradient {
+      background: linear-gradient(135deg, #b45309 0%, #f59e0b 40%, #fde68a 60%, #f59e0b 80%, #b45309 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .divider-gold { height: 1px; background: linear-gradient(to right, transparent, #f59e0b, transparent); margin: 1rem 0; }
+    .nav-link {
+      position: relative; color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #f59e0b; transition: width 0.3s ease; }
+    .nav-link:hover { color: #f59e0b; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-gold {
+      background: linear-gradient(135deg, #b45309, #f59e0b, #fde68a, #f59e0b, #b45309);
+      background-size: 200% auto; transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      color: #000; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .btn-gold:hover { background-position: right center; transform: scale(1.03); box-shadow: 0 8px 30px rgba(245,158,11,0.45); }
+    .btn-gold:disabled, .btn-gold.disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: flex; }
+    .animate-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+    .pricing-card { background: linear-gradient(145deg, #111, #0a0a0a); border: 1px solid rgba(245,158,11,0.2); transition: all 0.3s ease; }
+    .pricing-card:hover { border-color: rgba(245,158,11,0.5); box-shadow: 0 0 30px rgba(245,158,11,0.1); }
+    .pricing-card.featured { border-color: rgba(245,158,11,0.6); background: linear-gradient(145deg, #140a00, #0f0500); }
+    .waiver-box {
+      background: #0a0a0a; border: 1px solid rgba(245,158,11,0.2); border-radius: 0.75rem;
+      padding: 1.25rem; height: 200px; overflow-y: auto; font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.6);
+    }
+    .waiver-box::-webkit-scrollbar { width: 6px; }
+    .waiver-box::-webkit-scrollbar-track { background: #111; }
+    .waiver-box::-webkit-scrollbar-thumb { background: rgba(245,158,11,0.4); border-radius: 3px; }
+    .waiver-box::-webkit-scrollbar-thumb:hover { background: rgba(245,158,11,0.7); }
+    .custom-checkbox {
+      width: 22px; height: 22px; border: 2px solid rgba(245,158,11,0.5); border-radius: 4px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease; flex-shrink: 0; background: transparent;
+    }
+    .custom-checkbox.checked { background: linear-gradient(135deg, #b45309, #f59e0b); border-color: #f59e0b; }
+    .custom-checkbox.checked::after { content: '✓'; color: #000; font-weight: bold; font-size: 13px; }
+    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.75rem; border: 1px solid rgba(245,158,11,0.3); }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .feature-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0; }
+    .feature-dot { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; margin-top: 0.4rem; }
+    .hero-page { background: radial-gradient(ellipse at center top, #001a1a 0%, #000 60%); padding-top: 7rem; padding-bottom: 4rem; position: relative; overflow: hidden; }
+    .hero-page::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23f59e0b' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    }
+    .glow-text { text-shadow: 0 0 30px rgba(245,158,11,0.5), 0 0 60px rgba(245,158,11,0.2); }
+    .wave-accent {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(to right, transparent, rgba(6,182,212,0.4), rgba(245,158,11,0.6), rgba(6,182,212,0.4), transparent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245,158,11,0.15);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-lg" style="background: linear-gradient(135deg, #b45309, #f59e0b, #fde68a);">M</div>
+          <div>
+            <div class="font-display text-base font-bold leading-tight" style="color: #f59e0b;">Most Litt</div>
+            <div class="text-xs tracking-widest uppercase" style="color: rgba(245,158,11,0.7);">Party Rides</div>
+          </div>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="party-bus.html" class="nav-link">Party Bus</a>
+          <a href="jet-skis.html" class="nav-link" style="color: #f59e0b;">Jet Skis</a>
+          <a href="pontoon.html" class="nav-link">Pontoon</a>
+          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-2 rounded text-sm">Book Now</a>
+        </div>
+        <button class="md:hidden p-2" onclick="toggleMenu()" aria-label="Menu">
+          <div class="w-6 h-0.5 bg-amber-500 mb-1.5"></div>
+          <div class="w-6 h-0.5 bg-amber-500 mb-1.5"></div>
+          <div class="w-6 h-0.5 bg-amber-500"></div>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu md:hidden flex-col px-4 pb-6 gap-4" style="background: rgba(0,0,0,0.97); border-top: 1px solid rgba(245,158,11,0.15);">
+      <a href="index.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Home</a>
+      <a href="party-bus.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Party Bus</a>
+      <a href="jet-skis.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1); color: #f59e0b;">Jet Skis</a>
+      <a href="pontoon.html" class="nav-link py-3 text-base block">Pontoon</a>
+      <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-3 rounded text-sm text-center block mt-2">Book Now</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-page text-center px-4 sm:px-6 relative">
+    <div class="wave-accent"></div>
+    <div class="relative z-10 max-w-4xl mx-auto">
+      <div class="text-6xl mb-6">🌊</div>
+      <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">
+        Water Experience
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-black mb-4 glow-text">
+        <span class="gold-gradient">Jet Skis</span>
+      </h1>
+      <p class="text-lg sm:text-xl max-w-2xl mx-auto" style="color: rgba(255,255,255,0.7);">
+        Feel the rush. Ride the waves. Pure adrenaline on the water.
+      </p>
+    </div>
+  </section>
+
+  <!-- Description -->
+  <section class="py-16 px-4 sm:px-6" style="background: #000;">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-on-scroll">
+          <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">
+            About This Ride
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">
+            Hit the Water.<br /><span class="gold-gradient">Make Waves.</span>
+          </h2>
+          <div class="divider-gold"></div>
+          <p class="mt-4 leading-relaxed" style="color: rgba(255,255,255,0.65);">
+            Our high-performance jet skis are perfect for thrill-seekers who want to experience the freedom of the open water. Whether you're a first-timer or an experienced rider, our fleet delivers speed, excitement, and memories you'll never forget.
+          </p>
+          <p class="mt-3 leading-relaxed" style="color: rgba(255,255,255,0.65);">
+            We offer single and tandem jet ski options, guided tours, and open freestyle sessions. All necessary safety equipment is provided, and our certified guides are always on the water with you.
+          </p>
+          <div class="mt-6">
+            <h4 class="text-sm font-semibold tracking-wider uppercase mb-3" style="color: #f59e0b;">What's Included</h4>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Coast Guard-approved life jackets</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Safety briefing & water orientation</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Certified water safety guide</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Fully fueled, maintained jet skis</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Solo or tandem riding options</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">GoPro rental available (add-on)</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Group discounts available</span></div>
+          </div>
+        </div>
+
+        <div class="animate-on-scroll" style="transition-delay: 0.2s;">
+          <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(145deg, #001515, #000d0d); border: 1px solid rgba(6,182,212,0.2); padding: 2rem;">
+            <div class="text-center mb-6">
+              <div class="text-7xl">🌊</div>
+              <h3 class="font-display text-xl font-bold mt-4 text-white">Ride Specs</h3>
+            </div>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Max Speed</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">65+ MPH</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Engine</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">1800cc Supercharged</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Capacity</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">1–3 Riders</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Min. Age</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">16 (solo), 8 (passenger)</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Min. Booking</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">1 Hour</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="py-16 px-4 sm:px-6" style="background: linear-gradient(180deg, #000 0%, #000d0d 50%, #000 100%);">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12 animate-on-scroll">
+        <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">Pricing</div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Jet Ski <span class="gold-gradient">Packages</span></h2>
+        <div class="divider-gold max-w-xs mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="pricing-card rounded-2xl p-6 text-center animate-on-scroll">
+          <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">Single Rider</div>
+          <div class="font-display text-4xl font-black mb-1" style="color: #f59e0b;">$150</div>
+          <div class="text-sm mb-6" style="color: rgba(255,255,255,0.5);">Per Hour</div>
+          <div class="divider-gold"></div>
+          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.65);">
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> 1 jet ski</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Life jacket included</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Safety briefing</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Open water session</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card featured rounded-2xl p-6 text-center animate-on-scroll relative overflow-hidden" style="transition-delay: 0.15s;">
+          <div class="absolute top-0 left-0 right-0 text-center py-1.5 text-xs font-bold tracking-wider uppercase" style="background: linear-gradient(135deg, #b45309, #f59e0b); color: #000;">Best Value</div>
+          <div class="mt-6">
+            <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">Group Splash</div>
+            <div class="font-display text-4xl font-black mb-1" style="color: #f59e0b;">$400</div>
+            <div class="text-sm mb-6" style="color: rgba(255,255,255,0.5);">3 Skis / 2 Hours</div>
+          </div>
+          <div class="divider-gold"></div>
+          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.65);">
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> 3 jet skis</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> All safety gear</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Guide on water</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Group photo package</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Save $50 vs solo</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card rounded-2xl p-6 text-center animate-on-scroll" style="transition-delay: 0.3s;">
+          <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">Full Day VIP</div>
+          <div class="font-display text-4xl font-black mb-1" style="color: #f59e0b;">$800</div>
+          <div class="text-sm mb-6" style="color: rgba(255,255,255,0.5);">Up to 6 Hours</div>
+          <div class="divider-gold"></div>
+          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.65);">
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Up to 3 jet skis</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Private guide</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> GoPro included</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Scenic tour route</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Pontoon add-on option</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Priority booking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="py-16 px-4 sm:px-6" style="background: #000;">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-8 animate-on-scroll">
+        <div class="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.4);">
+          <span class="text-red-500 text-lg">▶</span>
+          <span class="text-sm font-semibold tracking-wider uppercase" style="color: #ef4444;">Required Viewing</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-3">
+          Watch Before You <span class="gold-gradient">Book</span>
+        </h2>
+        <p class="text-base font-semibold" style="color: #f59e0b;">
+          ⚠️ You must watch this safety video before booking your ride.
+        </p>
+        <p class="text-sm mt-2" style="color: rgba(255,255,255,0.5);">
+          This video covers jet ski operation, water safety rules, emergency procedures, and important guidelines all riders must follow.
+        </p>
+      </div>
+
+      <div class="animate-on-scroll" style="transition-delay: 0.2s;">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+            title="Jet Ski Safety Instructions"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="text-center text-xs mt-3" style="color: rgba(255,255,255,0.4);">
+          Jet Ski Safety Instructions &amp; Water Guidelines — Most Litt Party Rides
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waiver Section -->
+  <section class="py-16 px-4 sm:px-6" style="background: linear-gradient(180deg, #000 0%, #000d0d 50%, #000 100%);">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-8 animate-on-scroll">
+        <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">
+          Required Step
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-2">
+          Liability <span class="gold-gradient">Waiver</span>
+        </h2>
+        <p class="text-sm" style="color: rgba(255,255,255,0.5);">Please read and agree to the terms below before proceeding to booking.</p>
+      </div>
+
+      <div class="animate-on-scroll rounded-2xl overflow-hidden" style="transition-delay: 0.1s; border: 1px solid rgba(245,158,11,0.25); background: linear-gradient(145deg, #060d0d, #030808);">
+        <div class="p-6 sm:p-8">
+          <h3 class="font-semibold text-sm tracking-wider uppercase mb-3" style="color: #f59e0b;">Jet Ski Liability Waiver, Release & Assumption of Risk</h3>
+          <div class="waiver-box" id="waiverBox">
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.85);">IMPORTANT: READ THIS WAIVER BEFORE PROCEEDING.</strong> Jet skiing is an inherently dangerous water sport. By agreeing below, you acknowledge these risks and waive certain legal rights.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">1. ASSUMPTION OF WATER SPORT RISKS.</strong> I understand that jet skiing involves significant physical risks including but not limited to: collision with other watercraft, submersion, capsizing, collision with stationary objects, waves, wakes, injury from the jet ski's propulsion system, and other water-related hazards. I voluntarily assume all risks inherent in jet ski operation, whether known or unknown, and regardless of whether caused by the negligence of the Released Parties.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">2. RELEASE OF LIABILITY.</strong> I, for myself and my heirs, executors, and legal representatives, hereby release, waive, and discharge Most Litt Party Rides, its owners, officers, employees, guides, and agents ("Released Parties") from all claims, demands, or causes of action arising from personal injury, death, property damage, or any other loss sustained while participating in jet ski rental activities, even if caused by the negligence of the Released Parties.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">3. OPERATING REQUIREMENTS.</strong> I certify that I am physically capable of operating a jet ski, can swim, and am not under the influence of alcohol, medications, or substances that impair judgment or reaction time. Operators must be at least 16 years of age. Passengers under 16 must be accompanied by a parent or guardian.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">4. MANDATORY SAFETY EQUIPMENT.</strong> I agree to wear a properly fitted Coast Guard-approved life jacket at all times while on the water. I agree to use the engine cut-off lanyard as instructed. Failure to comply will result in immediate termination of rental with no refund.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">5. OPERATING RULES.</strong> I agree to follow all applicable federal, state, and local boating laws and regulations. I will maintain safe distances from other watercraft, swimmers, docks, and restricted areas. I will obey all posted speed limits and no-wake zones. Reckless operation, jumping wakes, or endangering others is strictly prohibited.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">6. ALCOHOL & SUBSTANCE POLICY.</strong> Operating a jet ski under the influence of alcohol or controlled substances is illegal and strictly forbidden. Any rider found to be impaired will be removed from the water immediately with no refund. I accept full legal responsibility for any DUI/BWI violations.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">7. EQUIPMENT DAMAGE.</strong> I accept full financial responsibility for any damage to the jet ski or associated equipment caused by my negligence, misuse, or operation in violation of these rules. A damage deposit may be required at check-in.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">8. WEATHER & CONDITIONS.</strong> Most Litt Party Rides reserves the right to cancel or postpone rentals due to unsafe weather or water conditions. In such cases, a full refund or rescheduling will be offered at no additional charge.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">9. INDEMNIFICATION.</strong> I agree to indemnify and hold harmless the Released Parties from any claims, losses, or expenses arising from my operation of the jet ski or my breach of these terms.</p>
+
+            <p class="mb-2"><strong style="color: rgba(255,255,255,0.8);">10. ACKNOWLEDGMENT.</strong> I confirm I am 18 or older (or have parental/guardian consent), have read this waiver in full, understand its legal implications, and am voluntarily agreeing to its terms without coercion.</p>
+          </div>
+
+          <div id="scrollReminder" class="mt-3 text-xs text-center flex items-center justify-center gap-2" style="color: rgba(245,158,11,0.7);">
+            <span>↓</span> <span>Scroll to read the full waiver</span> <span>↓</span>
+          </div>
+
+          <div class="mt-6 flex items-start gap-4">
+            <div id="agreeCheckbox" class="custom-checkbox mt-0.5" onclick="toggleCheckbox()" role="checkbox" aria-checked="false" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')toggleCheckbox()"></div>
+            <label class="text-sm leading-relaxed cursor-pointer" onclick="toggleCheckbox()" style="color: rgba(255,255,255,0.75);">
+              I have read and understood the complete Jet Ski Liability Waiver. I agree to all terms and conditions, acknowledge the inherent risks of jet skiing, and confirm I meet all physical and age requirements. I am 18 years of age or older.
+            </label>
+          </div>
+
+          <div id="waiverError" class="hidden mt-3 text-sm flex items-center gap-2" style="color: #ef4444;">
+            <span>⚠️</span> <span>You must agree to the waiver terms before continuing to booking.</span>
+          </div>
+
+          <div class="mt-8 text-center">
+            <button id="bookBtn" onclick="proceedToBooking()" class="btn-gold disabled px-10 py-4 rounded-xl text-base w-full sm:w-auto inline-block" disabled>
+              I Agree &amp; Continue to Booking
+            </button>
+            <p class="text-xs mt-3" style="color: rgba(255,255,255,0.35);">You will be redirected to our secure booking page.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 sm:px-6" style="background: #050505; border-top: 1px solid rgba(245,158,11,0.15);">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="text-center md:text-left">
+          <div class="font-display text-2xl font-bold" style="color: #f59e0b;">Most Litt Party Rides</div>
+          <p class="text-sm mt-1" style="color: rgba(255,255,255,0.4);">Premium Party Experiences on Land &amp; Water</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="index.html" class="text-sm nav-link">Home</a>
+          <a href="party-bus.html" class="text-sm nav-link">Party Bus</a>
+          <a href="pontoon.html" class="text-sm nav-link">Pontoon</a>
+          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="text-sm nav-link" style="color: #f59e0b;">Book Online</a>
+        </div>
+      </div>
+      <div class="divider-gold mt-8"></div>
+      <p class="text-center text-xs mt-6" style="color: rgba(255,255,255,0.3);">&copy; 2024 Most Litt Party Rides. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.style.background = window.scrollY > 50 ? 'rgba(0,0,0,0.97)' : 'rgba(0,0,0,0.85)'; });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    let isChecked = false;
+
+    function toggleCheckbox() {
+      isChecked = !isChecked;
+      const cb = document.getElementById('agreeCheckbox');
+      const btn = document.getElementById('bookBtn');
+      cb.classList.toggle('checked', isChecked);
+      cb.setAttribute('aria-checked', isChecked.toString());
+      btn.disabled = !isChecked;
+      btn.classList.toggle('disabled', !isChecked);
+      if (isChecked) document.getElementById('waiverError').classList.add('hidden');
+    }
+
+    function proceedToBooking() {
+      if (!isChecked) {
+        document.getElementById('waiverError').classList.remove('hidden');
+        document.getElementById('waiverBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      window.open('https://www.mostlittpartyrides.com/book-online', '_blank');
+    }
+
+    document.getElementById('waiverBox').addEventListener('scroll', function() {
+      if (this.scrollTop + this.clientHeight >= this.scrollHeight - 20)
+        document.getElementById('scrollReminder').style.opacity = '0';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pontoon Boat | Most Litt Party Rides</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 300: '#fde68a', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .font-display { font-family: 'Playfair Display', serif; }
+    .gold-gradient {
+      background: linear-gradient(135deg, #b45309 0%, #f59e0b 40%, #fde68a 60%, #f59e0b 80%, #b45309 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .divider-gold { height: 1px; background: linear-gradient(to right, transparent, #f59e0b, transparent); margin: 1rem 0; }
+    .nav-link {
+      position: relative; color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #f59e0b; transition: width 0.3s ease; }
+    .nav-link:hover { color: #f59e0b; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-gold {
+      background: linear-gradient(135deg, #b45309, #f59e0b, #fde68a, #f59e0b, #b45309);
+      background-size: 200% auto; transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      color: #000; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .btn-gold:hover { background-position: right center; transform: scale(1.03); box-shadow: 0 8px 30px rgba(245,158,11,0.45); }
+    .btn-gold:disabled, .btn-gold.disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: flex; }
+    .animate-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+    .pricing-card { background: linear-gradient(145deg, #111, #0a0a0a); border: 1px solid rgba(245,158,11,0.2); transition: all 0.3s ease; }
+    .pricing-card:hover { border-color: rgba(245,158,11,0.5); box-shadow: 0 0 30px rgba(245,158,11,0.1); }
+    .pricing-card.featured { border-color: rgba(245,158,11,0.6); background: linear-gradient(145deg, #140a00, #0f0500); }
+    .waiver-box {
+      background: #0a0a0a; border: 1px solid rgba(245,158,11,0.2); border-radius: 0.75rem;
+      padding: 1.25rem; height: 200px; overflow-y: auto; font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.6);
+    }
+    .waiver-box::-webkit-scrollbar { width: 6px; }
+    .waiver-box::-webkit-scrollbar-track { background: #111; }
+    .waiver-box::-webkit-scrollbar-thumb { background: rgba(245,158,11,0.4); border-radius: 3px; }
+    .waiver-box::-webkit-scrollbar-thumb:hover { background: rgba(245,158,11,0.7); }
+    .custom-checkbox {
+      width: 22px; height: 22px; border: 2px solid rgba(245,158,11,0.5); border-radius: 4px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease; flex-shrink: 0; background: transparent;
+    }
+    .custom-checkbox.checked { background: linear-gradient(135deg, #b45309, #f59e0b); border-color: #f59e0b; }
+    .custom-checkbox.checked::after { content: '✓'; color: #000; font-weight: bold; font-size: 13px; }
+    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.75rem; border: 1px solid rgba(245,158,11,0.3); }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .feature-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0; }
+    .feature-dot { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; margin-top: 0.4rem; }
+    .hero-page {
+      background: radial-gradient(ellipse at center top, #00101a 0%, #000 60%);
+      padding-top: 7rem; padding-bottom: 4rem; position: relative; overflow: hidden;
+    }
+    .hero-page::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23f59e0b' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    }
+    .glow-text { text-shadow: 0 0 30px rgba(245,158,11,0.5), 0 0 60px rgba(245,158,11,0.2); }
+    .ripple {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 60px; overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245,158,11,0.15);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-lg" style="background: linear-gradient(135deg, #b45309, #f59e0b, #fde68a);">M</div>
+          <div>
+            <div class="font-display text-base font-bold leading-tight" style="color: #f59e0b;">Most Litt</div>
+            <div class="text-xs tracking-widest uppercase" style="color: rgba(245,158,11,0.7);">Party Rides</div>
+          </div>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="party-bus.html" class="nav-link">Party Bus</a>
+          <a href="jet-skis.html" class="nav-link">Jet Skis</a>
+          <a href="pontoon.html" class="nav-link" style="color: #f59e0b;">Pontoon</a>
+          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-2 rounded text-sm">Book Now</a>
+        </div>
+        <button class="md:hidden p-2" onclick="toggleMenu()" aria-label="Menu">
+          <div class="w-6 h-0.5 bg-amber-500 mb-1.5"></div>
+          <div class="w-6 h-0.5 bg-amber-500 mb-1.5"></div>
+          <div class="w-6 h-0.5 bg-amber-500"></div>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu md:hidden flex-col px-4 pb-6 gap-4" style="background: rgba(0,0,0,0.97); border-top: 1px solid rgba(245,158,11,0.15);">
+      <a href="index.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Home</a>
+      <a href="party-bus.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Party Bus</a>
+      <a href="jet-skis.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Jet Skis</a>
+      <a href="pontoon.html" class="nav-link py-3 text-base block" style="color: #f59e0b;">Pontoon</a>
+      <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-3 rounded text-sm text-center block mt-2">Book Now</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-page text-center px-4 sm:px-6 relative">
+    <div class="relative z-10 max-w-4xl mx-auto">
+      <div class="text-6xl mb-6">⛵</div>
+      <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">
+        Water Experience
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-black mb-4 glow-text">
+        <span class="gold-gradient">Pontoon Boat</span>
+      </h1>
+      <p class="text-lg sm:text-xl max-w-2xl mx-auto" style="color: rgba(255,255,255,0.7);">
+        Float. Celebrate. Luxuriate. The perfect group party on the water.
+      </p>
+    </div>
+  </section>
+
+  <!-- Description -->
+  <section class="py-16 px-4 sm:px-6" style="background: #000;">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-on-scroll">
+          <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">
+            About This Ride
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4 text-white">
+            Party on the Water.<br /><span class="gold-gradient">In Pure Style.</span>
+          </h2>
+          <div class="divider-gold"></div>
+          <p class="mt-4 leading-relaxed" style="color: rgba(255,255,255,0.65);">
+            Our luxury pontoon boat is the ultimate floating party venue. Spacious, comfortable, and fully equipped for an incredible experience on the water. Perfect for groups who want to cruise, swim, and celebrate in style without the intensity of jet skiing.
+          </p>
+          <p class="mt-3 leading-relaxed" style="color: rgba(255,255,255,0.65);">
+            Whether you're planning a sunset cruise, a birthday bash on the water, or a lazy day floating with friends, our pontoon delivers the perfect blend of luxury and fun. Our captains handle everything so you can focus on enjoying every moment.
+          </p>
+          <div class="mt-6">
+            <h4 class="text-sm font-semibold tracking-wider uppercase mb-3" style="color: #f59e0b;">What's Included</h4>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Licensed & certified captain</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Seating for up to 12 guests</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Bluetooth speaker system</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Cooler & ice provided</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Life jackets for all passengers</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Swim ladder & floating mats</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">Customizable cruise route</span></div>
+            <div class="feature-item"><div class="feature-dot"></div><span style="color: rgba(255,255,255,0.7);">BYOB welcome (where permitted)</span></div>
+          </div>
+        </div>
+
+        <div class="animate-on-scroll" style="transition-delay: 0.2s;">
+          <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(145deg, #00101a, #000c15); border: 1px solid rgba(6,182,212,0.15); padding: 2rem;">
+            <div class="text-center mb-6">
+              <div class="text-7xl">⛵</div>
+              <h3 class="font-display text-xl font-bold mt-4 text-white">Boat Specs</h3>
+            </div>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Capacity</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">Up to 12 Guests</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Deck Size</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">24 ft Premium</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Cruising Speed</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">Up to 25 MPH</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Min. Age</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">All Ages Welcome</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-lg" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.1);">
+                <span class="text-sm" style="color: rgba(255,255,255,0.6);">Min. Booking</span>
+                <span class="text-sm font-semibold" style="color: #f59e0b;">3 Hours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="py-16 px-4 sm:px-6" style="background: linear-gradient(180deg, #000 0%, #00080f 50%, #000 100%);">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12 animate-on-scroll">
+        <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">Pricing</div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Pontoon <span class="gold-gradient">Packages</span></h2>
+        <div class="divider-gold max-w-xs mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="pricing-card rounded-2xl p-6 text-center animate-on-scroll">
+          <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">Afternoon Cruise</div>
+          <div class="font-display text-4xl font-black mb-1" style="color: #f59e0b;">$450</div>
+          <div class="text-sm mb-6" style="color: rgba(255,255,255,0.5);">3 Hours</div>
+          <div class="divider-gold"></div>
+          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.65);">
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Up to 10 guests</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Captain included</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Speaker & cooler</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Swimming stop</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card featured rounded-2xl p-6 text-center animate-on-scroll relative overflow-hidden" style="transition-delay: 0.15s;">
+          <div class="absolute top-0 left-0 right-0 text-center py-1.5 text-xs font-bold tracking-wider uppercase" style="background: linear-gradient(135deg, #b45309, #f59e0b); color: #000;">Most Popular</div>
+          <div class="mt-6">
+            <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">Party Cruise</div>
+            <div class="font-display text-4xl font-black mb-1" style="color: #f59e0b;">$750</div>
+            <div class="text-sm mb-6" style="color: rgba(255,255,255,0.5);">5 Hours</div>
+          </div>
+          <div class="divider-gold"></div>
+          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.65);">
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Up to 12 guests</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Captain included</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Premium speaker</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> 2 swimming stops</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Floating mats</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Sunset cruise option</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card rounded-2xl p-6 text-center animate-on-scroll" style="transition-delay: 0.3s;">
+          <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">Full Day VIP</div>
+          <div class="font-display text-4xl font-black mb-1" style="color: #f59e0b;">$1,200</div>
+          <div class="text-sm mb-6" style="color: rgba(255,255,255,0.5);">8 Hours</div>
+          <div class="divider-gold"></div>
+          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.65);">
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Up to 12 guests</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Captain + first mate</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Full AV package</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Catered snacks option</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Unlimited stops</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Jet ski add-on available</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="py-16 px-4 sm:px-6" style="background: #000;">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-8 animate-on-scroll">
+        <div class="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.4);">
+          <span class="text-red-500 text-lg">▶</span>
+          <span class="text-sm font-semibold tracking-wider uppercase" style="color: #ef4444;">Required Viewing</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-3">
+          Watch Before You <span class="gold-gradient">Book</span>
+        </h2>
+        <p class="text-base font-semibold" style="color: #f59e0b;">
+          ⚠️ You must watch this safety video before booking your ride.
+        </p>
+        <p class="text-sm mt-2" style="color: rgba(255,255,255,0.5);">
+          This video covers pontoon boat safety, passenger guidelines, on-water rules, swimming safety, and what to do in an emergency.
+        </p>
+      </div>
+
+      <div class="animate-on-scroll" style="transition-delay: 0.2s;">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+            title="Pontoon Boat Safety Instructions"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="text-center text-xs mt-3" style="color: rgba(255,255,255,0.4);">
+          Pontoon Boat Safety Instructions &amp; Passenger Guidelines — Most Litt Party Rides
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waiver Section -->
+  <section class="py-16 px-4 sm:px-6" style="background: linear-gradient(180deg, #000 0%, #00080f 50%, #000 100%);">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-8 animate-on-scroll">
+        <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">
+          Required Step
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-2">
+          Liability <span class="gold-gradient">Waiver</span>
+        </h2>
+        <p class="text-sm" style="color: rgba(255,255,255,0.5);">Please read and agree to the terms below before proceeding to booking.</p>
+      </div>
+
+      <div class="animate-on-scroll rounded-2xl overflow-hidden" style="transition-delay: 0.1s; border: 1px solid rgba(245,158,11,0.25); background: linear-gradient(145deg, #040a0f, #020608);">
+        <div class="p-6 sm:p-8">
+          <h3 class="font-semibold text-sm tracking-wider uppercase mb-3" style="color: #f59e0b;">Pontoon Boat Liability Waiver, Release & Passenger Agreement</h3>
+          <div class="waiver-box" id="waiverBox">
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.85);">PLEASE READ CAREFULLY BEFORE BOARDING.</strong> By agreeing below, all passengers acknowledge the risks associated with boating and agree to the following terms and conditions.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">1. ASSUMPTION OF RISK.</strong> I understand that boating activities, including but not limited to pontoon boat rental and operation, involve inherent risks of personal injury, death, and property damage. These risks include drowning, collision with other vessels or stationary objects, sudden weather changes, capsizing, slips and falls on deck, and other water-related hazards. I voluntarily assume all such risks on behalf of myself and my guests.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">2. RELEASE OF LIABILITY.</strong> I, on behalf of myself, my guests, heirs, and legal representatives, hereby release, waive, discharge, and covenant not to sue Most Litt Party Rides, its owners, captains, crew, employees, and agents from all claims arising from bodily injury, death, or property damage sustained during the pontoon boat rental, even if caused by the negligence of the Released Parties.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">3. CAPTAIN'S AUTHORITY.</strong> The captain has full and final authority over all vessel operations and passenger conduct. All passengers must follow the captain's instructions at all times. Failure to comply with crew instructions is grounds for immediate return to dock with no refund.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">4. PASSENGER CONDUCT.</strong> I agree to be responsible for the conduct of all guests in my party. All passengers must remain within the vessel boundaries while the boat is in motion. No guest may operate the vessel without explicit captain authorization. Disorderly, aggressive, or unsafe behavior will result in immediate termination of service.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">5. SWIMMING & WATER ENTRY.</strong> Swimming is only permitted at designated stops and with captain approval. All swimmers must wear a life jacket unless they have demonstrated swimming ability to the captain's satisfaction. No jumping from the roof or elevated surfaces of the vessel. Diving is prohibited.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">6. ALCOHOL POLICY.</strong> Alcohol consumption is permitted for guests 21+ in compliance with local laws. I agree that intoxicated passengers will not be permitted to swim and must remain seated. The captain reserves the right to refuse service to visibly intoxicated individuals and return the vessel to dock if alcohol is causing safety concerns.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">7. CHILDREN & MINORS.</strong> All minors must wear properly fitted life jackets at all times while on board. Adults are responsible for supervising minors in their care. I certify that all minors are accompanied by a parent or legal guardian who has agreed to these terms.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">8. VESSEL DAMAGE & CLEANLINESS.</strong> I accept responsibility for any damage to the vessel, equipment, or property caused by myself or my guests beyond normal wear. I agree to return the vessel in the same clean condition it was received. Excessive cleaning fees may be charged for violations.</p>
+
+            <p class="mb-3"><strong style="color: rgba(255,255,255,0.8);">9. WEATHER & SAFETY CANCELLATION.</strong> The captain has sole authority to cancel, shorten, or alter the cruise route due to unsafe weather, mechanical issues, or other safety concerns. Full refunds or reschedules will be offered for captain-initiated cancellations.</p>
+
+            <p class="mb-2"><strong style="color: rgba(255,255,255,0.8);">10. ACKNOWLEDGMENT.</strong> I confirm that I am 18 years of age or older, have read this complete waiver, understand all terms, and voluntarily agree to be legally bound by its provisions on behalf of myself and all guests in my party.</p>
+          </div>
+
+          <div id="scrollReminder" class="mt-3 text-xs text-center flex items-center justify-center gap-2" style="color: rgba(245,158,11,0.7);">
+            <span>↓</span> <span>Scroll to read the full waiver</span> <span>↓</span>
+          </div>
+
+          <div class="mt-6 flex items-start gap-4">
+            <div id="agreeCheckbox" class="custom-checkbox mt-0.5" onclick="toggleCheckbox()" role="checkbox" aria-checked="false" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')toggleCheckbox()"></div>
+            <label class="text-sm leading-relaxed cursor-pointer" onclick="toggleCheckbox()" style="color: rgba(255,255,255,0.75);">
+              I have read and understood the complete Pontoon Boat Liability Waiver. I agree to all terms and conditions on behalf of myself and all guests, and I accept full responsibility for ensuring all passengers comply with safety rules and guidelines. I am 18 years of age or older.
+            </label>
+          </div>
+
+          <div id="waiverError" class="hidden mt-3 text-sm flex items-center gap-2" style="color: #ef4444;">
+            <span>⚠️</span> <span>You must agree to the waiver terms before continuing to booking.</span>
+          </div>
+
+          <div class="mt-8 text-center">
+            <button id="bookBtn" onclick="proceedToBooking()" class="btn-gold disabled px-10 py-4 rounded-xl text-base w-full sm:w-auto inline-block" disabled>
+              I Agree &amp; Continue to Booking
+            </button>
+            <p class="text-xs mt-3" style="color: rgba(255,255,255,0.35);">You will be redirected to our secure booking page.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 sm:px-6" style="background: #050505; border-top: 1px solid rgba(245,158,11,0.15);">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="text-center md:text-left">
+          <div class="font-display text-2xl font-bold" style="color: #f59e0b;">Most Litt Party Rides</div>
+          <p class="text-sm mt-1" style="color: rgba(255,255,255,0.4);">Premium Party Experiences on Land &amp; Water</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="index.html" class="text-sm nav-link">Home</a>
+          <a href="party-bus.html" class="text-sm nav-link">Party Bus</a>
+          <a href="jet-skis.html" class="text-sm nav-link">Jet Skis</a>
+          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="text-sm nav-link" style="color: #f59e0b;">Book Online</a>
+        </div>
+      </div>
+      <div class="divider-gold mt-8"></div>
+      <p class="text-center text-xs mt-6" style="color: rgba(255,255,255,0.3);">&copy; 2024 Most Litt Party Rides. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.style.background = window.scrollY > 50 ? 'rgba(0,0,0,0.97)' : 'rgba(0,0,0,0.85)'; });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    let isChecked = false;
+
+    function toggleCheckbox() {
+      isChecked = !isChecked;
+      const cb = document.getElementById('agreeCheckbox');
+      const btn = document.getElementById('bookBtn');
+      cb.classList.toggle('checked', isChecked);
+      cb.setAttribute('aria-checked', isChecked.toString());
+      btn.disabled = !isChecked;
+      btn.classList.toggle('disabled', !isChecked);
+      if (isChecked) document.getElementById('waiverError').classList.add('hidden');
+    }
+
+    function proceedToBooking() {
+      if (!isChecked) {
+        document.getElementById('waiverError').classList.remove('hidden');
+        document.getElementById('waiverBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      window.open('https://www.mostlittpartyrides.com/book-online', '_blank');
+    }
+
+    document.getElementById('waiverBox').addEventListener('scroll', function() {
+      if (this.scrollTop + this.clientHeight >= this.scrollHeight - 20)
+        document.getElementById('scrollReminder').style.opacity = '0';
+    });
+  </script>
+</body>
+</html>
