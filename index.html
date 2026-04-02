@@ -5,47 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Most Litt Party Rides | Luxury Party Experiences</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            gold: {
-              300: '#fde68a',
-              400: '#fbbf24',
-              500: '#f59e0b',
-              600: '#d97706',
-              700: '#b45309',
-            }
-          },
-          fontFamily: {
-            display: ['Georgia', 'serif'],
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.8s ease-out forwards',
-            'fade-in': 'fadeIn 1s ease-out forwards',
-            'pulse-gold': 'pulseGold 2s ease-in-out infinite',
-          },
-          keyframes: {
-            fadeUp: {
-              '0%': { opacity: '0', transform: 'translateY(30px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            fadeIn: {
-              '0%': { opacity: '0' },
-              '100%': { opacity: '1' },
-            },
-            pulseGold: {
-              '0%, 100%': { boxShadow: '0 0 0 0 rgba(245, 158, 11, 0.4)' },
-              '50%': { boxShadow: '0 0 0 12px rgba(245, 158, 11, 0)' },
-            }
-          }
-        }
-      }
-    }
-  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --neon: #00ff88;
+      --neon-dim: rgba(0,255,136,0.15);
+      --neon-border: rgba(0,255,136,0.25);
+      --neon-glow: 0 0 20px rgba(0,255,136,0.5), 0 0 40px rgba(0,255,136,0.2);
+      --neon-glow-strong: 0 0 10px rgba(0,255,136,0.8), 0 0 30px rgba(0,255,136,0.5), 0 0 60px rgba(0,255,136,0.2);
+    }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -58,491 +27,693 @@
 
     .font-display { font-family: 'Playfair Display', serif; }
 
-    .gold-gradient {
-      background: linear-gradient(135deg, #b45309 0%, #f59e0b 40%, #fde68a 60%, #f59e0b 80%, #b45309 100%);
+    /* ── Neon accent gradient text ── */
+    .accent-gradient {
+      background: linear-gradient(135deg, #00cc6a 0%, #00ff88 50%, #aaffcc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .gold-border {
-      border: 1px solid;
-      border-image: linear-gradient(135deg, #b45309, #f59e0b, #fde68a, #f59e0b, #b45309) 1;
-    }
-
+    /* ── Hero background ── */
     .hero-bg {
-      background: radial-gradient(ellipse at center top, #1a0a00 0%, #000 60%);
+      background: radial-gradient(ellipse at center top, #001a0d 0%, #000 65%);
       position: relative;
     }
-
     .hero-bg::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f59e0b' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      opacity: 0.4;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300ff88' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
 
-    .card-hover {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(245, 158, 11, 0.2);
-    }
-
-    .btn-gold {
-      background: linear-gradient(135deg, #b45309, #f59e0b, #fde68a, #f59e0b, #b45309);
-      background-size: 200% auto;
-      transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      color: #000;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .btn-gold:hover {
-      background-position: right center;
-      transform: scale(1.03);
-      box-shadow: 0 8px 30px rgba(245, 158, 11, 0.45);
-    }
-
-    .btn-outline-gold {
-      border: 2px solid #f59e0b;
-      color: #f59e0b;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-
-    .btn-outline-gold:hover {
-      background: rgba(245, 158, 11, 0.1);
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
-    }
-
-    .service-card {
-      background: linear-gradient(145deg, #111 0%, #0a0a0a 100%);
-      border: 1px solid rgba(245, 158, 11, 0.2);
-      transition: all 0.4s ease;
-    }
-
-    .service-card:hover {
-      border-color: rgba(245, 158, 11, 0.6);
-      box-shadow: 0 0 40px rgba(245, 158, 11, 0.15), inset 0 0 40px rgba(245, 158, 11, 0.02);
-      transform: translateY(-8px);
-    }
-
-    .service-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #1a0a00, #2d1500);
-      border: 2px solid rgba(245, 158, 11, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 2.2rem;
-    }
-
-    .divider-gold {
+    /* ── Divider ── */
+    .divider {
       height: 1px;
-      background: linear-gradient(to right, transparent, #f59e0b, transparent);
+      background: linear-gradient(to right, transparent, var(--neon), transparent);
       margin: 1rem 0;
     }
 
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-block;
+      background: var(--neon);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 9999px;
+      padding: 0.875rem 2rem;
+      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.2s ease;
+    }
+    .btn-primary:hover {
+      transform: scale(1.04);
+      box-shadow: var(--neon-glow-strong);
+      background: #33ffaa;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid var(--neon);
+      color: var(--neon);
+      font-weight: 600;
+      font-size: 0.875rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 9999px;
+      padding: 0.8rem 2rem;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: var(--neon-dim);
+      box-shadow: var(--neon-glow);
+      color: #fff;
+    }
+
+    /* ── Nav ── */
     .nav-link {
       position: relative;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.75);
       text-decoration: none;
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       transition: color 0.2s;
     }
-
     .nav-link::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #f59e0b;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--neon);
+      border-radius: 2px;
       transition: width 0.3s ease;
+      box-shadow: 0 0 6px var(--neon);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--neon); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* ── Service Cards ── */
+    .service-card {
+      background: #0a0a0a;
+      border: 1px solid var(--neon-border);
+      border-radius: 1.25rem;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0,255,136,0.55);
+      box-shadow: 0 0 40px rgba(0,255,136,0.12), inset 0 0 30px rgba(0,255,136,0.03);
     }
 
-    .nav-link:hover {
-      color: #f59e0b;
+    .service-icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(0,255,136,0.06);
+      border: 2px solid rgba(0,255,136,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2.2rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover .service-icon {
+      border-color: rgba(0,255,136,0.7);
+      box-shadow: 0 0 16px rgba(0,255,136,0.3);
     }
 
-    .nav-link:hover::after {
-      width: 100%;
+    /* ── Feature tiles ── */
+    .feature-tile {
+      background: rgba(0,255,136,0.04);
+      border: 1px solid rgba(0,255,136,0.12);
+      border-radius: 0.875rem;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .feature-tile:hover {
+      border-color: rgba(0,255,136,0.35);
+      box-shadow: 0 0 20px rgba(0,255,136,0.08);
+      transform: translateY(-4px);
     }
 
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(24px);
+    /* ── Glow text ── */
+    .glow-text {
+      text-shadow: 0 0 40px rgba(0,255,136,0.35), 0 0 80px rgba(0,255,136,0.15);
+    }
+
+    /* ── Badge pill ── */
+    .badge {
+      display: inline-block;
+      border: 1px solid rgba(0,255,136,0.35);
+      color: var(--neon);
+      background: rgba(0,255,136,0.05);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      padding: 0.35rem 1rem;
+    }
+
+    /* ── Pulse animation ── */
+    @keyframes pulseNeon {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,136,0.4); }
+      50%       { box-shadow: 0 0 0 14px rgba(0,255,136,0); }
+    }
+    .pulse-neon { animation: pulseNeon 2.2s ease-in-out infinite; }
+
+    /* ── Fade-up ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── Scroll animate ── */
+    .aos {
+      opacity: 0; transform: translateY(26px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
+    .aos.show { opacity: 1; transform: translateY(0); }
 
-    .animate-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .particles {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
+    /* ── Particles ── */
+    .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
     .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: #f59e0b;
-      opacity: 0;
-      animation: float-particle linear infinite;
+      position: absolute; border-radius: 50%;
+      opacity: 0; animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.15; }
+      100% { transform: translateY(-30px) scale(1); opacity: 0; }
     }
 
-    @keyframes float-particle {
-      0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.2; }
-      100% { transform: translateY(-20px) scale(1); opacity: 0; }
-    }
+    /* ── Mobile menu ── */
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: flex; }
 
-    .glow-text {
-      text-shadow: 0 0 30px rgba(245, 158, 11, 0.5), 0 0 60px rgba(245, 158, 11, 0.2);
+    /* ── Waiver section ── */
+    .waiver-box {
+      background: #080808;
+      border: 1px solid rgba(0,255,136,0.18);
+      border-radius: 0.75rem;
+      padding: 1.25rem 1.5rem;
+      height: 210px;
+      overflow-y: auto;
+      font-size: 0.825rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.55);
     }
+    .waiver-box::-webkit-scrollbar { width: 5px; }
+    .waiver-box::-webkit-scrollbar-track { background: #111; border-radius: 3px; }
+    .waiver-box::-webkit-scrollbar-thumb { background: rgba(0,255,136,0.35); border-radius: 3px; }
+    .waiver-box::-webkit-scrollbar-thumb:hover { background: rgba(0,255,136,0.65); }
 
-    .mobile-menu {
-      display: none;
+    .waiver-check {
+      width: 22px; height: 22px; flex-shrink: 0;
+      border: 2px solid rgba(0,255,136,0.45);
+      border-radius: 5px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease; background: transparent;
     }
+    .waiver-check.on {
+      background: var(--neon);
+      border-color: var(--neon);
+      box-shadow: 0 0 10px rgba(0,255,136,0.5);
+    }
+    .waiver-check.on::after { content: '✓'; color: #000; font-weight: 800; font-size: 13px; }
 
-    .mobile-menu.open {
-      display: flex;
+    .waiver-card {
+      background: linear-gradient(145deg, #060606, #0a0a0a);
+      border: 1px solid rgba(0,255,136,0.2);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .waiver-card:hover { border-color: rgba(0,255,136,0.35); }
+
+    .waiver-rule {
+      display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(0,255,136,0.06);
+    }
+    .waiver-rule:last-child { border-bottom: none; }
+    .waiver-rule-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--neon); flex-shrink: 0; margin-top: 0.45rem;
+      box-shadow: 0 0 6px rgba(0,255,136,0.5);
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245,158,11,0.15);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
+  <!-- ══════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════ -->
+  <nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(0,0,0,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,255,136,0.12);transition:background 0.3s;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;height:70px;">
+
         <!-- Logo -->
-        <a href="index.html" class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-lg" style="background: linear-gradient(135deg, #b45309, #f59e0b, #fde68a);">M</div>
+        <a href="index.html" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--neon);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:#000;box-shadow:0 0 14px rgba(0,255,136,0.5);">M</div>
           <div>
-            <div class="font-display text-base font-bold leading-tight" style="color: #f59e0b;">Most Litt</div>
-            <div class="text-xs tracking-widest uppercase" style="color: rgba(245,158,11,0.7);">Party Rides</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--neon);line-height:1.2;">Most Litt</div>
+            <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,255,136,0.55);">Party Rides</div>
           </div>
         </a>
 
-        <!-- Desktop Nav -->
-        <div class="hidden md:flex items-center gap-8">
-          <a href="index.html" class="nav-link" style="color: #f59e0b;">Home</a>
-          <a href="party-bus.html" class="nav-link">Party Bus</a>
-          <a href="jet-skis.html" class="nav-link">Jet Skis</a>
-          <a href="pontoon.html" class="nav-link">Pontoon</a>
-          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-2 rounded text-sm">Book Now</a>
+        <!-- Desktop links -->
+        <div style="display:none;" id="desktop-nav" class="md-flex">
+          <div style="display:flex;align-items:center;gap:2rem;">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="party-bus.html" class="nav-link">Party Bus</a>
+            <a href="jet-skis.html" class="nav-link">Jet Skis</a>
+            <a href="pontoon.html" class="nav-link">Pontoon</a>
+            <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-primary" style="padding:0.6rem 1.4rem;font-size:0.75rem;">Book Now</a>
+          </div>
         </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="mobile-btn" class="md:hidden p-2" onclick="toggleMenu()" aria-label="Menu">
-          <div class="w-6 h-0.5 bg-amber-500 mb-1.5 transition-all" id="line1"></div>
-          <div class="w-6 h-0.5 bg-amber-500 mb-1.5 transition-all" id="line2"></div>
-          <div class="w-6 h-0.5 bg-amber-500 transition-all" id="line3"></div>
+        <!-- Hamburger -->
+        <button onclick="toggleMenu()" style="background:none;border:none;cursor:pointer;padding:0.5rem;display:flex;flex-direction:column;gap:5px;" aria-label="Menu" id="hamburger">
+          <span class="ham-line" style="display:block;width:24px;height:2px;background:var(--neon);border-radius:2px;transition:all 0.3s;box-shadow:0 0 6px var(--neon);"></span>
+          <span class="ham-line" style="display:block;width:24px;height:2px;background:var(--neon);border-radius:2px;transition:all 0.3s;box-shadow:0 0 6px var(--neon);"></span>
+          <span class="ham-line" style="display:block;width:24px;height:2px;background:var(--neon);border-radius:2px;transition:all 0.3s;box-shadow:0 0 6px var(--neon);"></span>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden flex-col px-4 pb-6 gap-4" style="background: rgba(0,0,0,0.97); border-top: 1px solid rgba(245,158,11,0.15);">
-      <a href="index.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1); color: #f59e0b;">Home</a>
-      <a href="party-bus.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Party Bus</a>
-      <a href="jet-skis.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Jet Skis</a>
-      <a href="pontoon.html" class="nav-link py-3 text-base block">Pontoon</a>
-      <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-3 rounded text-sm text-center block mt-2">Book Now</a>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu" style="flex-direction:column;padding:0 1.5rem 1.5rem;gap:0;background:rgba(0,0,0,0.98);border-top:1px solid rgba(0,255,136,0.1);">
+      <a href="index.html" class="nav-link" style="display:block;padding:0.9rem 0;border-bottom:1px solid rgba(0,255,136,0.08);color:var(--neon);">Home</a>
+      <a href="party-bus.html" class="nav-link" style="display:block;padding:0.9rem 0;border-bottom:1px solid rgba(0,255,136,0.08);">Party Bus</a>
+      <a href="jet-skis.html" class="nav-link" style="display:block;padding:0.9rem 0;border-bottom:1px solid rgba(0,255,136,0.08);">Jet Skis</a>
+      <a href="pontoon.html" class="nav-link" style="display:block;padding:0.9rem 0;">Pontoon</a>
+      <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-primary" style="display:block;text-align:center;margin-top:1rem;">Book Now</a>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden">
+  <style>
+    @media (min-width: 768px) {
+      #desktop-nav { display: block !important; }
+      #hamburger { display: none !important; }
+    }
+  </style>
+
+  <!-- ══════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════ -->
+  <section class="hero-bg" style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;">
     <!-- Particles -->
     <div class="particles" id="particles"></div>
 
-    <!-- Gold light beams -->
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="absolute" style="width: 2px; height: 60%; top: 0; left: 25%; background: linear-gradient(to bottom, rgba(245,158,11,0.3), transparent); transform: rotate(15deg); transform-origin: top;"></div>
-      <div class="absolute" style="width: 2px; height: 50%; top: 0; left: 50%; background: linear-gradient(to bottom, rgba(245,158,11,0.25), transparent);"></div>
-      <div class="absolute" style="width: 2px; height: 60%; top: 0; right: 25%; background: linear-gradient(to bottom, rgba(245,158,11,0.3), transparent); transform: rotate(-15deg); transform-origin: top;"></div>
-      <div class="absolute" style="width: 100%; height: 1px; bottom: 0; background: linear-gradient(to right, transparent, rgba(245,158,11,0.3), transparent);"></div>
+    <!-- Light beams -->
+    <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
+      <div style="position:absolute;width:2px;height:60%;top:0;left:22%;background:linear-gradient(to bottom,rgba(0,255,136,0.2),transparent);transform:rotate(12deg);transform-origin:top;"></div>
+      <div style="position:absolute;width:2px;height:55%;top:0;left:50%;background:linear-gradient(to bottom,rgba(0,255,136,0.15),transparent);"></div>
+      <div style="position:absolute;width:2px;height:60%;top:0;right:22%;background:linear-gradient(to bottom,rgba(0,255,136,0.2),transparent);transform:rotate(-12deg);transform-origin:top;"></div>
+      <div style="position:absolute;width:100%;height:1px;bottom:0;background:linear-gradient(to right,transparent,rgba(0,255,136,0.25),transparent);"></div>
     </div>
 
-    <div class="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-28 pb-20">
-      <div class="inline-block mb-6 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">
+    <div style="position:relative;z-index:10;text-align:center;padding:7rem 1.5rem 5rem;max-width:1000px;margin:0 auto;">
+
+      <div class="badge" style="margin-bottom:1.5rem;animation:fadeUp 0.7s ease-out both;">
         Premium Party Experience
       </div>
 
-      <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 leading-none tracking-tight glow-text" style="animation: fadeUp 0.8s ease-out forwards;">
-        <span class="gold-gradient">Most Litt</span><br />
-        <span class="text-white">Party Rides</span>
+      <h1 class="font-display glow-text" style="font-size:clamp(3rem,9vw,6.5rem);font-weight:900;line-height:1.05;margin-bottom:1.25rem;animation:fadeUp 0.8s 0.1s ease-out both;">
+        <span class="accent-gradient">Most Litt</span><br />
+        <span style="color:#fff;">Party Rides</span>
       </h1>
 
-      <div class="divider-gold max-w-xs mx-auto my-6"></div>
+      <div class="divider" style="max-width:220px;margin:1.5rem auto;"></div>
 
-      <p class="text-lg sm:text-xl md:text-2xl font-light max-w-2xl mx-auto mb-10 leading-relaxed" style="color: rgba(255,255,255,0.75); animation: fadeUp 0.8s 0.2s ease-out both;">
+      <p style="font-size:clamp(1rem,2.5vw,1.25rem);font-weight:300;max-width:600px;margin:0 auto 2.5rem;color:rgba(255,255,255,0.7);line-height:1.75;animation:fadeUp 0.8s 0.25s ease-out both;">
         Elevate your celebration with our luxury fleet — party buses, jet skis, and pontoon boats built for unforgettable moments.
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center" style="animation: fadeUp 0.8s 0.4s ease-out both;">
-        <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-8 py-4 rounded-lg text-base inline-block" style="animation: pulseGold 2s ease-in-out infinite;">
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;animation:fadeUp 0.8s 0.4s ease-out both;">
+        <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-primary pulse-neon" style="font-size:1rem;padding:1rem 2.25rem;">
           Book Your Ride Now
         </a>
-        <a href="#services" class="btn-outline-gold px-8 py-4 rounded-lg text-base inline-block">
+        <a href="#services" class="btn-outline" style="font-size:1rem;padding:0.9rem 2.25rem;">
           Explore Services
         </a>
       </div>
 
-      <div class="mt-16 flex flex-wrap justify-center gap-8 sm:gap-12">
-        <div class="text-center" style="animation: fadeUp 0.8s 0.6s ease-out both;">
-          <div class="font-display text-3xl font-bold" style="color: #f59e0b;">500+</div>
-          <div class="text-xs tracking-widest uppercase mt-1" style="color: rgba(255,255,255,0.5);">Events Hosted</div>
+      <!-- Stats -->
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:3rem;margin-top:4rem;animation:fadeUp 0.8s 0.6s ease-out both;">
+        <div style="text-align:center;">
+          <div class="font-display" style="font-size:2rem;font-weight:700;color:var(--neon);">500+</div>
+          <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:0.25rem;">Events Hosted</div>
         </div>
-        <div class="text-center" style="animation: fadeUp 0.8s 0.7s ease-out both;">
-          <div class="font-display text-3xl font-bold" style="color: #f59e0b;">3</div>
-          <div class="text-xs tracking-widest uppercase mt-1" style="color: rgba(255,255,255,0.5);">Premium Rides</div>
+        <div style="text-align:center;">
+          <div class="font-display" style="font-size:2rem;font-weight:700;color:var(--neon);">3</div>
+          <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:0.25rem;">Premium Rides</div>
         </div>
-        <div class="text-center" style="animation: fadeUp 0.8s 0.8s ease-out both;">
-          <div class="font-display text-3xl font-bold" style="color: #f59e0b;">5★</div>
-          <div class="text-xs tracking-widest uppercase mt-1" style="color: rgba(255,255,255,0.5);">Rated Service</div>
+        <div style="text-align:center;">
+          <div class="font-display" style="font-size:2rem;font-weight:700;color:var(--neon);">5★</div>
+          <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:0.25rem;">Rated Service</div>
         </div>
       </div>
     </div>
 
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="animation: fadeIn 1s 1.2s ease-out both;">
-      <span class="text-xs tracking-widest uppercase" style="color: rgba(245,158,11,0.6);">Scroll</span>
-      <div class="w-px h-12" style="background: linear-gradient(to bottom, rgba(245,158,11,0.6), transparent);"></div>
+    <!-- Scroll indicator -->
+    <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;animation:fadeIn 1s 1.3s ease-out both;">
+      <span style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(0,255,136,0.5);">Scroll</span>
+      <div style="width:1px;height:3rem;background:linear-gradient(to bottom,rgba(0,255,136,0.5),transparent);"></div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section id="services" class="relative py-20 sm:py-28 px-4 sm:px-6" style="background: #000;">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16 animate-on-scroll">
-        <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">
-          Our Fleet
-        </div>
-        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
-          <span class="gold-gradient">Choose Your</span><br />
-          <span class="text-white">Adventure</span>
+  <!-- ══════════════════════════════════════════════
+       SERVICES
+  ══════════════════════════════════════════════ -->
+  <section id="services" style="padding:6rem 1.5rem;background:#000;">
+    <div style="max-width:1280px;margin:0 auto;">
+
+      <div class="aos" style="text-align:center;margin-bottom:3.5rem;">
+        <div class="badge" style="margin-bottom:1rem;">Our Fleet</div>
+        <h2 class="font-display" style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;margin-bottom:0.75rem;">
+          <span class="accent-gradient">Choose Your</span><br />
+          <span style="color:#fff;">Adventure</span>
         </h2>
-        <div class="divider-gold max-w-xs mx-auto my-6"></div>
-        <p class="text-lg max-w-xl mx-auto" style="color: rgba(255,255,255,0.6);">
-          From land to water — we've got the ultimate ride for your party.
+        <div class="divider" style="max-width:200px;margin:1rem auto;"></div>
+        <p style="color:rgba(255,255,255,0.55);font-size:1.05rem;max-width:480px;margin:0 auto;">From land to water — we've got the ultimate ride for your party.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.75rem;">
+
+        <!-- Party Bus -->
+        <div class="service-card p-8 text-center aos">
+          <div class="service-icon">🚌</div>
+          <h3 class="font-display" style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:0.75rem;">Party Bus</h3>
+          <div class="divider"></div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.6);line-height:1.7;margin:1rem 0;">
+            Roll deep in style. Premium sound, lighting, and vibes for birthdays, bachelorettes, and more.
+          </p>
+          <div style="margin-bottom:1.5rem;">
+            <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(0,255,136,0.6);">Starting at</div>
+            <div class="font-display" style="font-size:2rem;font-weight:700;color:var(--neon);margin-top:0.2rem;">$350</div>
+          </div>
+          <a href="party-bus.html" class="btn-primary" style="display:block;text-align:center;">View Details</a>
+        </div>
+
+        <!-- Jet Skis -->
+        <div class="service-card p-8 text-center aos" style="transition-delay:0.15s;position:relative;">
+          <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);">
+            <span style="background:var(--neon);color:#000;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:9999px;white-space:nowrap;box-shadow:0 0 12px rgba(0,255,136,0.5);">Most Popular</span>
+          </div>
+          <div class="service-icon" style="margin-top:1rem;">🌊</div>
+          <h3 class="font-display" style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:0.75rem;">Jet Skis</h3>
+          <div class="divider"></div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.6);line-height:1.7;margin:1rem 0;">
+            Feel the rush. High-performance jet skis for solo riders and groups ready to make waves.
+          </p>
+          <div style="margin-bottom:1.5rem;">
+            <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(0,255,136,0.6);">Starting at</div>
+            <div class="font-display" style="font-size:2rem;font-weight:700;color:var(--neon);margin-top:0.2rem;">$150/hr</div>
+          </div>
+          <a href="jet-skis.html" class="btn-primary" style="display:block;text-align:center;">View Details</a>
+        </div>
+
+        <!-- Pontoon -->
+        <div class="service-card p-8 text-center aos" style="transition-delay:0.3s;">
+          <div class="service-icon">⛵</div>
+          <h3 class="font-display" style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:0.75rem;">Pontoon Boat</h3>
+          <div class="divider"></div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.6);line-height:1.7;margin:1rem 0;">
+            Float and celebrate. Cruise, relax, and party on the water in comfort and style.
+          </p>
+          <div style="margin-bottom:1.5rem;">
+            <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(0,255,136,0.6);">Starting at</div>
+            <div class="font-display" style="font-size:2rem;font-weight:700;color:var(--neon);margin-top:0.2rem;">$450</div>
+          </div>
+          <a href="pontoon.html" class="btn-primary" style="display:block;text-align:center;">View Details</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       WHY CHOOSE US
+  ══════════════════════════════════════════════ -->
+  <section style="padding:6rem 1.5rem;background:linear-gradient(180deg,#000 0%,#001208 50%,#000 100%);">
+    <div style="max-width:1100px;margin:0 auto;text-align:center;">
+      <div class="aos">
+        <div class="badge" style="margin-bottom:1rem;">The Most Litt Difference</div>
+        <h2 class="font-display" style="font-size:clamp(2rem,4.5vw,3rem);font-weight:700;margin-bottom:3rem;">
+          <span style="color:#fff;">Why Choose</span><br />
+          <span class="accent-gradient">Most Litt?</span>
+        </h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;">
+        <div class="feature-tile aos" style="padding:1.75rem;">
+          <div style="font-size:2.5rem;margin-bottom:1rem;">🏆</div>
+          <h4 style="font-weight:600;color:#fff;margin-bottom:0.5rem;">Premium Fleet</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.6;">Top-of-the-line vehicles and watercraft maintained to the highest standards.</p>
+        </div>
+        <div class="feature-tile aos" style="padding:1.75rem;transition-delay:0.1s;">
+          <div style="font-size:2.5rem;margin-bottom:1rem;">🔒</div>
+          <h4 style="font-weight:600;color:#fff;margin-bottom:0.5rem;">Safety First</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.6;">Every ride includes safety briefings, equipment, and certified operators.</p>
+        </div>
+        <div class="feature-tile aos" style="padding:1.75rem;transition-delay:0.2s;">
+          <div style="font-size:2.5rem;margin-bottom:1rem;">🎉</div>
+          <h4 style="font-weight:600;color:#fff;margin-bottom:0.5rem;">Unforgettable Fun</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.6;">We specialize in creating memories that last a lifetime — guaranteed good times.</p>
+        </div>
+        <div class="feature-tile aos" style="padding:1.75rem;transition-delay:0.3s;">
+          <div style="font-size:2.5rem;margin-bottom:1rem;">📞</div>
+          <h4 style="font-weight:600;color:#fff;margin-bottom:0.5rem;">Concierge Service</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.6;">Our team handles every detail so you can focus on celebrating.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CTA
+  ══════════════════════════════════════════════ -->
+  <section style="padding:6rem 1.5rem;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,#001a0d 0%,#000 70%);"></div>
+    <div style="position:absolute;inset:0;border-top:1px solid rgba(0,255,136,0.15);border-bottom:1px solid rgba(0,255,136,0.15);"></div>
+
+    <div class="aos" style="position:relative;z-index:10;max-width:700px;margin:0 auto;text-align:center;">
+      <h2 class="font-display" style="font-size:clamp(2.25rem,6vw,4rem);font-weight:900;margin-bottom:1.25rem;">
+        <span class="accent-gradient">Ready to Get</span><br />
+        <span style="color:#fff;">Most Litt?</span>
+      </h2>
+      <p style="font-size:1.1rem;color:rgba(255,255,255,0.6);margin-bottom:2.5rem;line-height:1.7;">
+        Book your luxury experience today. Limited slots available — don't miss out on the party of a lifetime.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+        <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-primary pulse-neon" style="font-size:1rem;padding:1rem 2.5rem;">Book Online Now</a>
+        <a href="party-bus.html" class="btn-outline" style="font-size:1rem;padding:0.9rem 2.5rem;">View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       LIABILITY WAIVER
+  ══════════════════════════════════════════════ -->
+  <section id="waiver" style="padding:6rem 1.5rem;background:#000;">
+    <div style="max-width:860px;margin:0 auto;">
+
+      <!-- Section header -->
+      <div class="aos" style="text-align:center;margin-bottom:2.5rem;">
+        <div class="badge" style="margin-bottom:1rem;">Required Before Booking</div>
+        <h2 class="font-display" style="font-size:clamp(2rem,5vw,3rem);font-weight:700;margin-bottom:0.75rem;">
+          <span class="accent-gradient">Liability</span>
+          <span style="color:#fff;"> Waiver</span>
+        </h2>
+        <div class="divider" style="max-width:180px;margin:1rem auto;"></div>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.95rem;max-width:520px;margin:0 auto;line-height:1.7;">
+          All riders are required to read and agree to the following terms before proceeding to booking.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      <div class="waiver-card aos" style="transition-delay:0.1s;">
 
-        <!-- Party Bus Card -->
-        <div class="service-card rounded-2xl p-8 text-center animate-on-scroll">
-          <div class="service-icon">🚌</div>
-          <h3 class="font-display text-2xl font-bold mb-3 text-white">Party Bus</h3>
-          <div class="divider-gold"></div>
-          <p class="text-sm leading-relaxed my-4" style="color: rgba(255,255,255,0.65);">
-            Roll deep in style. Our luxury party bus features premium sound, lighting, and vibes for birthdays, bachelorettes, and more.
-          </p>
-          <div class="mb-6">
-            <span class="text-xs tracking-widest uppercase" style="color: rgba(245,158,11,0.7);">Starting at</span>
-            <div class="font-display text-3xl font-bold mt-1" style="color: #f59e0b;">$350</div>
+        <!-- Key rules summary -->
+        <div style="padding:1.75rem 2rem;border-bottom:1px solid rgba(0,255,136,0.12);">
+          <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--neon);margin-bottom:1.1rem;">Key Terms at a Glance</h3>
+          <div class="waiver-rule">
+            <div class="waiver-rule-dot"></div>
+            <span style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong style="color:#fff;">Age Requirement:</strong> All riders and passengers must be <strong style="color:var(--neon);">18 years of age or older</strong> to participate. Valid government-issued ID required at check-in.</span>
           </div>
-          <a href="party-bus.html" class="btn-gold px-6 py-3 rounded-lg text-sm inline-block w-full">
-            View Details
-          </a>
+          <div class="waiver-rule">
+            <div class="waiver-rule-dot"></div>
+            <span style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong style="color:#fff;">Individual Signatures:</strong> Groups of more than 18 people require <strong style="color:var(--neon);">each individual participant</strong> to sign a separate waiver prior to boarding. No exceptions.</span>
+          </div>
+          <div class="waiver-rule">
+            <div class="waiver-rule-dot"></div>
+            <span style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong style="color:#fff;">Personal Safety:</strong> All participants are fully responsible for their own safety and the safety of any minors in their care. Most Litt Party Rides provides equipment and guidance but cannot guarantee against all risks.</span>
+          </div>
+          <div class="waiver-rule">
+            <div class="waiver-rule-dot"></div>
+            <span style="color:rgba(255,255,255,0.75);font-size:0.9rem;"><strong style="color:#fff;">Waiver Requirement:</strong> A signed liability waiver must be on file before any ride begins. Booking does not substitute for a signed waiver.</span>
+          </div>
         </div>
 
-        <!-- Jet Ski Card -->
-        <div class="service-card rounded-2xl p-8 text-center animate-on-scroll" style="transition-delay: 0.15s;">
-          <div class="relative">
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-              <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase" style="background: linear-gradient(135deg, #b45309, #f59e0b); color: #000;">Most Popular</span>
-            </div>
+        <!-- Full waiver scroll box -->
+        <div style="padding:1.75rem 2rem;border-bottom:1px solid rgba(0,255,136,0.12);">
+          <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--neon);margin-bottom:0.85rem;">Full Liability Waiver &amp; Release of Claims</h3>
+          <div class="waiver-box" id="waiverScrollBox">
+            <p style="margin-bottom:0.85rem;"><strong style="color:rgba(255,255,255,0.9);">PLEASE READ THIS WAIVER CAREFULLY.</strong> By checking the agreement box below, you acknowledge that you have read, understood, and agree to be legally bound by these terms and conditions.</p>
+
+            <p style="margin-bottom:0.85rem;"><strong style="color:rgba(255,255,255,0.8);">1. ASSUMPTION OF RISK.</strong> I understand and acknowledge that the use of any Most Litt Party Rides service — including but not limited to party bus, jet ski, and pontoon boat rentals — involves inherent risks. These risks include physical injury, property damage, illness, or other harm. I voluntarily assume all risks associated with these activities, whether known or unknown, foreseeable or unforeseeable.</p>
+
+            <p style="margin-bottom:0.85rem;"><strong style="color:rgba(255,255,255,0.8);">2. RELEASE OF LIABILITY.</strong> I, on behalf of myself and my guests, hereby release, waive, discharge, and covenant not to sue Most Litt Party Rides, its owners, officers, employees, agents, drivers, captains, and contractors (collectively "Released Parties") from any and all claims, demands, losses, damages, or causes of action arising from any injury, loss, or damage sustained while participating in any service.</p>
+
+            <p style="margin-bottom:0.85rem;"><strong style="color:rgba(255,255,255,0.8);">3. PERSONAL RESPONSIBILITY.</strong> I accept full and sole responsibility for my own safety and the safety of any persons under my supervision during the rental period. I agree to act in a safe and responsible manner at all times and to comply with all instructions given by drivers, captains, guides, and staff.</p>
+
+            <p style="margin-bottom:0.85rem;"><strong style="color:rgba(255,255,255,0.8);">4. AGE REQUIREMENT.</strong> I confirm that I am 18 years of age or older, or that I have the legally authorized consent of a parent or guardian. I understand that all riders must be at least 18 years old, and that valid photo ID will be required at check-in.</p>
+
+            <p style="margin-bottom:0.85rem;"><strong style="color:rgba(255,255,255,0.8);">5. GROUP WAIVER POLICY.</strong> For groups exceeding 18 participants, each individual must sign a separate waiver form prior to participating. Group organizers are responsible for ensuring all members of their party have completed and submitted their individual waivers.</p>
+
+            <p style="margin-bottom:0.85rem;"><strong style="color:rgba(255,255,255,0.8);">6. CONDUCT &amp; COMPLIANCE.</strong> I agree to comply with all applicable federal, state, and local laws, as well as all company rules and policies. Disorderly conduct, harassment, vandalism, or any illegal activity will result in immediate termination of service with no refund.</p>
+
+            <p style="margin-bottom:0.85rem;"><strong style="color:rgba(255,255,255,0.8);">7. PROPERTY DAMAGE.</strong> I accept financial responsibility for any damage to vehicles, watercraft, or equipment caused by myself or my guests beyond normal wear and tear. I authorize Most Litt Party Rides to charge the payment method on file for assessed damages.</p>
+
+            <p style="margin-bottom:0.85rem;"><strong style="color:rgba(255,255,255,0.8);">8. INDEMNIFICATION.</strong> I agree to indemnify, defend, and hold harmless the Released Parties from and against any claims, actions, losses, costs, or damages — including reasonable attorney fees — arising from my use of any Most Litt Party Rides service.</p>
+
+            <p style="margin-bottom:0.4rem;"><strong style="color:rgba(255,255,255,0.8);">9. GOVERNING LAW.</strong> This waiver is governed by the laws of the State of North Carolina. If any provision is deemed unenforceable, remaining provisions remain in full effect. This waiver constitutes the entire agreement between the parties concerning liability.</p>
           </div>
-          <div class="service-icon mt-4" style="border-color: rgba(245,158,11,0.7);">🌊</div>
-          <h3 class="font-display text-2xl font-bold mb-3 text-white">Jet Skis</h3>
-          <div class="divider-gold"></div>
-          <p class="text-sm leading-relaxed my-4" style="color: rgba(255,255,255,0.65);">
-            Feel the rush. Our high-performance jet skis deliver thrills on the water for solo riders and groups ready to make waves.
-          </p>
-          <div class="mb-6">
-            <span class="text-xs tracking-widest uppercase" style="color: rgba(245,158,11,0.7);">Starting at</span>
-            <div class="font-display text-3xl font-bold mt-1" style="color: #f59e0b;">$150/hr</div>
+          <div id="waiverScrollHint" style="text-align:center;margin-top:0.6rem;font-size:0.72rem;letter-spacing:0.08em;color:rgba(0,255,136,0.5);transition:opacity 0.4s;">
+            ↓ &nbsp; Scroll to read the full waiver &nbsp; ↓
           </div>
-          <a href="jet-skis.html" class="btn-gold px-6 py-3 rounded-lg text-sm inline-block w-full">
-            View Details
-          </a>
         </div>
 
-        <!-- Pontoon Card -->
-        <div class="service-card rounded-2xl p-8 text-center animate-on-scroll" style="transition-delay: 0.3s;">
-          <div class="service-icon">⛵</div>
-          <h3 class="font-display text-2xl font-bold mb-3 text-white">Pontoon Boat</h3>
-          <div class="divider-gold"></div>
-          <p class="text-sm leading-relaxed my-4" style="color: rgba(255,255,255,0.65);">
-            Float and celebrate. Perfect for groups who want to cruise, relax, and party on the water in comfort and style.
-          </p>
-          <div class="mb-6">
-            <span class="text-xs tracking-widest uppercase" style="color: rgba(245,158,11,0.7);">Starting at</span>
-            <div class="font-display text-3xl font-bold mt-1" style="color: #f59e0b;">$450</div>
+        <!-- Checkbox + CTA -->
+        <div style="padding:1.75rem 2rem;">
+          <div style="display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;">
+            <div id="waiverCheck" class="waiver-check" onclick="toggleWaiver()" role="checkbox" aria-checked="false" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')toggleWaiver()"></div>
+            <label style="font-size:0.875rem;color:rgba(255,255,255,0.7);line-height:1.65;cursor:pointer;" onclick="toggleWaiver()">
+              I have read and understood the full Liability Waiver above. I agree to all terms and conditions on behalf of myself and all guests in my party. I confirm I am <strong style="color:#fff;">18 years of age or older</strong> and legally authorized to accept these terms.
+            </label>
           </div>
-          <a href="pontoon.html" class="btn-gold px-6 py-3 rounded-lg text-sm inline-block w-full">
-            View Details
-          </a>
+
+          <div id="waiverErr" style="display:none;align-items:center;gap:0.5rem;margin-bottom:1.25rem;padding:0.75rem 1rem;border-radius:0.5rem;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);">
+            <span style="color:#ef4444;font-size:1rem;">⚠</span>
+            <span style="color:#ef4444;font-size:0.825rem;">You must agree to the waiver terms before continuing to booking.</span>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1rem;">
+            <button id="waiverBookBtn" onclick="waiverProceed()" style="background:rgba(0,255,136,0.15);color:rgba(255,255,255,0.35);font-weight:700;font-size:0.875rem;letter-spacing:0.07em;text-transform:uppercase;border:2px solid rgba(0,255,136,0.2);border-radius:9999px;padding:0.875rem 2.25rem;cursor:not-allowed;transition:all 0.3s ease;" disabled>
+              I Agree &amp; Continue to Booking
+            </button>
+            <p style="font-size:0.75rem;color:rgba(255,255,255,0.3);">You will be redirected to our secure booking page.</p>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Experience Section -->
-  <section class="py-20 sm:py-28 px-4 sm:px-6 relative" style="background: linear-gradient(180deg, #000 0%, #0a0500 50%, #000 100%);">
-    <div class="max-w-5xl mx-auto text-center animate-on-scroll">
-      <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">
-        The Most Litt Difference
-      </div>
-      <h2 class="font-display text-4xl sm:text-5xl font-bold mb-12">
-        <span class="text-white">Why Choose</span><br />
-        <span class="gold-gradient">Most Litt?</span>
-      </h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="p-6 rounded-xl animate-on-scroll" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15);">
-          <div class="text-4xl mb-4">🏆</div>
-          <h4 class="font-semibold text-white mb-2">Premium Fleet</h4>
-          <p class="text-sm" style="color: rgba(255,255,255,0.55);">Top-of-the-line vehicles and watercraft maintained to the highest standards.</p>
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer style="background:#050505;border-top:1px solid rgba(0,255,136,0.12);padding:3rem 1.5rem 2rem;">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;">
+        <div>
+          <div class="font-display" style="font-size:1.4rem;font-weight:700;color:var(--neon);">Most Litt Party Rides</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.35);margin-top:0.25rem;">Premium Party Experiences on Land &amp; Water</p>
         </div>
-        <div class="p-6 rounded-xl animate-on-scroll" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); transition-delay: 0.1s;">
-          <div class="text-4xl mb-4">🔒</div>
-          <h4 class="font-semibold text-white mb-2">Safety First</h4>
-          <p class="text-sm" style="color: rgba(255,255,255,0.55);">Every ride includes safety briefings, equipment, and certified operators.</p>
-        </div>
-        <div class="p-6 rounded-xl animate-on-scroll" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); transition-delay: 0.2s;">
-          <div class="text-4xl mb-4">🎉</div>
-          <h4 class="font-semibold text-white mb-2">Unforgettable Fun</h4>
-          <p class="text-sm" style="color: rgba(255,255,255,0.55);">We specialize in creating memories that last a lifetime — guaranteed good times.</p>
-        </div>
-        <div class="p-6 rounded-xl animate-on-scroll" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); transition-delay: 0.3s;">
-          <div class="text-4xl mb-4">📞</div>
-          <h4 class="font-semibold text-white mb-2">Concierge Service</h4>
-          <p class="text-sm" style="color: rgba(255,255,255,0.55);">Our team handles every detail so you can focus on celebrating.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="party-bus.html" class="nav-link">Party Bus</a>
+          <a href="jet-skis.html" class="nav-link">Jet Skis</a>
+          <a href="pontoon.html" class="nav-link">Pontoon</a>
+          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="nav-link" style="color:var(--neon);">Book Online</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden">
-    <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, #1a0800 0%, #000 70%);"></div>
-    <div class="absolute inset-0" style="border-top: 1px solid rgba(245,158,11,0.2); border-bottom: 1px solid rgba(245,158,11,0.2);"></div>
-
-    <div class="relative z-10 max-w-3xl mx-auto text-center animate-on-scroll">
-      <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-black mb-6">
-        <span class="gold-gradient">Ready to Get</span><br />
-        <span class="text-white">Most Litt?</span>
-      </h2>
-      <p class="text-lg mb-10" style="color: rgba(255,255,255,0.65);">
-        Book your luxury experience today. Limited slots available — don't miss out on the party of a lifetime.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-10 py-4 rounded-lg text-base inline-block">
-          Book Online Now
-        </a>
-        <a href="party-bus.html" class="btn-outline-gold px-10 py-4 rounded-lg text-base inline-block">
-          View Services
-        </a>
+      <div class="divider" style="margin:1.75rem 0 1.25rem;"></div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem;">
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.25);">&copy; 2024 Most Litt Party Rides. All Rights Reserved.</p>
+        <p style="font-size:0.75rem;color:rgba(0,255,136,0.4);">Powered by <span style="color:var(--neon);font-weight:600;">Springer Solutions</span></p>
       </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-12 px-4 sm:px-6" style="background: #050505; border-top: 1px solid rgba(245,158,11,0.15);">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="text-center md:text-left">
-          <div class="font-display text-2xl font-bold" style="color: #f59e0b;">Most Litt Party Rides</div>
-          <p class="text-sm mt-1" style="color: rgba(255,255,255,0.4);">Premium Party Experiences on Land & Water</p>
-        </div>
-        <div class="flex flex-wrap justify-center gap-6">
-          <a href="party-bus.html" class="text-sm nav-link">Party Bus</a>
-          <a href="jet-skis.html" class="text-sm nav-link">Jet Skis</a>
-          <a href="pontoon.html" class="text-sm nav-link">Pontoon</a>
-          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="text-sm nav-link" style="color: #f59e0b;">Book Online</a>
-        </div>
-      </div>
-      <div class="divider-gold mt-8"></div>
-      <p class="text-center text-xs mt-6" style="color: rgba(255,255,255,0.3);">&copy; 2024 Most Litt Party Rides. All Rights Reserved.</p>
     </div>
   </footer>
 
   <script>
-    // Mobile menu toggle
     function toggleMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('open');
+      document.getElementById('mobile-menu').classList.toggle('open');
     }
 
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
+    // Navbar scroll
+    const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(0,0,0,0.97)';
+      nav.style.background = window.scrollY > 50 ? 'rgba(0,0,0,0.97)' : 'rgba(0,0,0,0.88)';
+    });
+
+    // Scroll animations
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.aos').forEach(el => obs.observe(el));
+
+    // Waiver checkbox
+    let waiverAgreed = false;
+    function toggleWaiver() {
+      waiverAgreed = !waiverAgreed;
+      const check = document.getElementById('waiverCheck');
+      const btn   = document.getElementById('waiverBookBtn');
+      const err   = document.getElementById('waiverErr');
+      check.classList.toggle('on', waiverAgreed);
+      check.setAttribute('aria-checked', waiverAgreed);
+      if (waiverAgreed) {
+        btn.disabled = false;
+        btn.style.cssText = 'font-weight:700;font-size:0.875rem;letter-spacing:0.07em;text-transform:uppercase;border-radius:9999px;padding:0.875rem 2.25rem;cursor:pointer;transition:all 0.3s ease;background:#00ff88;color:#000;border:none;box-shadow:0 0 18px rgba(0,255,136,0.45);';
+        btn.onmouseover = () => { btn.style.transform='scale(1.04)'; btn.style.boxShadow='0 0 10px rgba(0,255,136,0.8),0 0 30px rgba(0,255,136,0.5)'; };
+        btn.onmouseout  = () => { btn.style.transform='scale(1)';    btn.style.boxShadow='0 0 18px rgba(0,255,136,0.45)'; };
+        err.style.display = 'none';
       } else {
-        navbar.style.background = 'rgba(0,0,0,0.85)';
+        btn.disabled = true;
+        btn.style.cssText = 'background:rgba(0,255,136,0.15);color:rgba(255,255,255,0.35);font-weight:700;font-size:0.875rem;letter-spacing:0.07em;text-transform:uppercase;border:2px solid rgba(0,255,136,0.2);border-radius:9999px;padding:0.875rem 2.25rem;cursor:not-allowed;transition:all 0.3s ease;';
+      }
+    }
+    function waiverProceed() {
+      if (!waiverAgreed) {
+        const err = document.getElementById('waiverErr');
+        err.style.display = 'flex';
+        document.getElementById('waiverScrollBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      window.open('https://www.mostlittpartyrides.com/book-online', '_blank');
+    }
+    // Hide scroll hint when waiver is scrolled to bottom
+    document.getElementById('waiverScrollBox').addEventListener('scroll', function() {
+      if (this.scrollTop + this.clientHeight >= this.scrollHeight - 20) {
+        document.getElementById('waiverScrollHint').style.opacity = '0';
       }
     });
 
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-    // Particle system
-    function createParticles() {
-      const container = document.getElementById('particles');
-      const colors = ['rgba(245,158,11,', 'rgba(253,230,138,', 'rgba(180,83,9,'];
-
-      for (let i = 0; i < 20; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = Math.random() * 4 + 1;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        p.style.cssText = `
-          left: ${Math.random() * 100}%;
-          width: ${size}px;
-          height: ${size}px;
-          background: ${color}${Math.random() * 0.7 + 0.3});
-          animation-duration: ${Math.random() * 10 + 8}s;
-          animation-delay: ${Math.random() * 8}s;
-        `;
-        container.appendChild(p);
-      }
+    // Particles
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 24; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 3.5 + 1;
+      const opacity = (Math.random() * 0.6 + 0.2).toFixed(2);
+      p.style.cssText = `
+        left:${Math.random()*100}%;
+        width:${size}px; height:${size}px;
+        background:rgba(0,255,136,${opacity});
+        box-shadow:0 0 ${size*3}px rgba(0,255,136,0.6);
+        animation-duration:${Math.random()*10+8}s;
+        animation-delay:${Math.random()*8}s;
+      `;
+      container.appendChild(p);
     }
-
-    createParticles();
   </script>
 </body>
 </html>
