@@ -8,26 +8,19 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body {
-  background:#000;
-  color:#fff;
-  font-family: system-ui, sans-serif;
-}
+body { background:#000; color:#fff; font-family: system-ui, sans-serif; }
 
-/* Gradient text */
 .gradient-text {
   background: linear-gradient(90deg,#facc15,#ef4444,#22c55e);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-/* Glass nav */
 .glass {
   backdrop-filter: blur(12px);
   background: rgba(0,0,0,0.6);
 }
 
-/* Buttons */
 .btn {
   background: linear-gradient(90deg,#facc15,#ef4444,#22c55e);
   color:#000;
@@ -39,7 +32,6 @@ body {
   box-shadow:0 10px 30px rgba(239,68,68,0.4);
 }
 
-/* Cards */
 .card {
   background:#111;
   border:1px solid rgba(255,255,255,0.05);
@@ -50,7 +42,6 @@ body {
   border-color:rgba(250,204,21,0.3);
 }
 
-/* Fade */
 .fade {
   opacity:0;
   transform:translateY(20px);
@@ -65,33 +56,52 @@ body {
 
 <body>
 
-<!-- NAV -->
+<!-- NAVBAR FIXED -->
 <nav class="fixed w-full z-50 glass border-b border-white/10">
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
 
     <!-- LOGO -->
-    <div class="flex items-center gap-3">
-      <img src="logo.png" class="h-10">
-      <div>
-        <div class="text-yellow-400 font-bold">Most Litt</div>
+    <div class="flex items-center gap-2">
+      <img src="logo.png" class="h-8">
+      <div class="leading-tight">
+        <div class="text-yellow-400 font-bold text-sm">Most Litt</div>
         <div class="text-xs text-green-400">Party Rides</div>
       </div>
     </div>
 
-    <!-- LINKS -->
-    <div class="flex gap-6 text-sm items-center">
+    <!-- DESKTOP NAV -->
+    <div class="hidden md:flex gap-5 text-sm items-center">
       <a href="#services">Services</a>
-      <a href="party-bus.html">Party Bus</a>
+      <a href="party-bus.html">Bus</a>
       <a href="jet-skis.html">Jet Skis</a>
       <a href="pontoon.html">Pontoon</a>
       <a href="#events">Events</a>
       <a href="#gallery">Gallery</a>
       <a href="#safety">Safety</a>
 
-      <a href="sms:9108593520" class="btn px-4 py-2 rounded">Text</a>
-      <a href="https://www.mostlittpartyrides.com/book-online" class="btn px-4 py-2 rounded">Book</a>
+      <a href="sms:9108593520" class="btn px-3 py-1 rounded text-xs">Text</a>
+      <a href="https://www.mostlittpartyrides.com/book-online" class="btn px-3 py-1 rounded text-xs">Book</a>
     </div>
 
+    <!-- MOBILE MENU BUTTON -->
+    <button onclick="toggleMenu()" class="md:hidden text-white text-2xl">
+      ☰
+    </button>
+
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="hidden flex-col bg-black px-4 pb-4 space-y-3 md:hidden">
+    <a href="#services">Services</a>
+    <a href="party-bus.html">Party Bus</a>
+    <a href="jet-skis.html">Jet Skis</a>
+    <a href="pontoon.html">Pontoon</a>
+    <a href="#events">Events</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#safety">Safety</a>
+
+    <a href="sms:9108593520" class="btn px-4 py-2 rounded text-center">Text</a>
+    <a href="https://www.mostlittpartyrides.com/book-online" class="btn px-4 py-2 rounded text-center">Book</a>
   </div>
 </nav>
 
@@ -131,133 +141,14 @@ body {
 
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="py-20 text-center">
-
-  <h2 class="text-4xl font-bold mb-10 gradient-text">
-    Choose Your Experience
-  </h2>
-
-  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
-
-    <div class="card p-6 rounded-xl">
-      <h3 class="text-xl mb-3">Party Bus</h3>
-      <p class="text-gray-400 mb-4">Turn the city into your party 🔥</p>
-      <a href="party-bus.html" class="btn px-4 py-2 rounded">Book</a>
-    </div>
-
-    <div class="card p-6 rounded-xl">
-      <h3 class="text-xl mb-3">Jet Skis</h3>
-      <p class="text-gray-400 mb-4">Fast water energy 🌊</p>
-      <a href="jet-skis.html" class="btn px-4 py-2 rounded">Book</a>
-    </div>
-
-    <div class="card p-6 rounded-xl">
-      <h3 class="text-xl mb-3">Pontoon</h3>
-      <p class="text-gray-400 mb-4">Relax + vibe on water 🚤</p>
-      <a href="pontoon.html" class="btn px-4 py-2 rounded">Book</a>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- EVENTS -->
-<section id="events" class="py-20 text-center">
-
-  <h2 class="text-4xl font-bold mb-6 gradient-text">
-    Most Litt Events 🔥
-  </h2>
-
-  <p class="text-gray-400 mb-6">
-    Upcoming parties, pop-ups, and special experiences.
-  </p>
-
-  <a href="#" class="btn px-6 py-3 rounded">
-    View Events
-  </a>
-
-</section>
-
-<!-- GALLERY -->
-<section id="gallery" class="py-20 text-center">
-
-  <h2 class="text-4xl font-bold mb-10 gradient-text">
-    Most Litt Gallery 🔥
-  </h2>
-
-  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
-
-    <div class="relative">
-      <img src="party1.jpg" class="rounded-xl">
-      <div class="absolute bottom-2 left-2 text-sm bg-black/60 px-2 py-1 rounded">
-        Birthday Vibes 🎉
-      </div>
-    </div>
-
-    <div class="relative">
-      <img src="party2.jpg" class="rounded-xl">
-      <div class="absolute bottom-2 left-2 text-sm bg-black/60 px-2 py-1 rounded">
-        Night Energy 🔥
-      </div>
-    </div>
-
-    <div class="relative">
-      <img src="jetski.jpg" class="rounded-xl">
-      <div class="absolute bottom-2 left-2 text-sm bg-black/60 px-2 py-1 rounded">
-        Water Action 🌊
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SAFETY -->
-<section id="safety" class="py-20 text-center">
-
-  <h2 class="text-4xl font-bold mb-6 gradient-text">
-    Safety First 🚨
-  </h2>
-
-  <div class="max-w-3xl mx-auto mb-10">
-    <iframe width="100%" height="315"
-      src="https://www.youtube.com/embed/YOUR_VIDEO_LINK"
-      frameborder="0" allowfullscreen>
-    </iframe>
-  </div>
-
-  <div class="max-w-2xl mx-auto bg-gray-900 p-6 rounded-xl border border-white/10">
-    <h3 class="text-lg font-bold mb-3">Liability Waiver</h3>
-    <p class="text-gray-400 mb-4">
-      Must be 18+. All riders must sign waiver before booking.
-    </p>
-
-    <label class="flex justify-center gap-2">
-      <input type="checkbox" required>
-      <span>I agree</span>
-    </label>
-  </div>
-
-</section>
-
-<!-- CTA -->
-<section class="py-20 text-center">
-
-  <h2 class="text-4xl font-bold mb-6 gradient-text">
-    Ready to Go Most Litt? 🔥
-  </h2>
-
-  <a href="#" class="btn px-8 py-4 rounded">
-    Lock Your Spot
-  </a>
-
-</section>
-
 <!-- SCRIPT -->
 <script>
-const faders = document.querySelectorAll('.fade');
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  menu.classList.toggle("hidden");
+}
 
+const faders = document.querySelectorAll('.fade');
 window.addEventListener('scroll', () => {
   faders.forEach(el => {
     if(el.getBoundingClientRect().top < window.innerHeight - 100){
