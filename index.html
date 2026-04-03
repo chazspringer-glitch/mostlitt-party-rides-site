@@ -8,112 +8,113 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body { background:#000; color:#fff; font-family:sans-serif; }
+body {
+  background:#000;
+  color:#fff;
+  font-family: system-ui, -apple-system, sans-serif;
+}
 
-.gold-gradient {
-  background: linear-gradient(90deg, #facc15, #ef4444, #22c55e);
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(90deg,#facc15,#ef4444,#22c55e);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-.btn-gold {
-  background: linear-gradient(90deg, #facc15, #ef4444, #22c55e);
+/* Glass Nav */
+.glass {
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.6);
+}
+
+/* Buttons */
+.btn {
+  background: linear-gradient(90deg,#facc15,#ef4444,#22c55e);
   color:#000;
-  font-weight:bold;
-  transition:.3s;
+  font-weight:600;
+  transition:0.3s;
+}
+.btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 10px 30px rgba(239,68,68,0.4);
 }
 
-.btn-gold:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 20px rgba(239,68,68,0.6);
+/* Cards */
+.card {
+  background:#0f0f0f;
+  border:1px solid rgba(255,255,255,0.05);
+  transition:0.3s;
+}
+.card:hover {
+  transform:translateY(-6px);
+  border-color:rgba(250,204,21,0.3);
 }
 
-#intro { transition: opacity 0.5s ease; }
+/* Fade in */
+.fade {
+  opacity:0;
+  transform:translateY(20px);
+  transition:0.8s;
+}
+.fade.show {
+  opacity:1;
+  transform:translateY(0);
+}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro" class="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
-  <img src="logo.png" class="h-24 mb-4 animate-pulse">
-  <h1 class="text-2xl gold-gradient">Welcome to the Littest Experience 🔥</h1>
-</div>
-
 <!-- NAV -->
-<nav class="flex justify-between items-center p-4 bg-black border-b border-yellow-500/20">
-  <div class="flex items-center gap-3">
-    <img src="logo.png" class="h-12">
-    <div>
-      <div class="font-bold text-yellow-400">Most Litt</div>
-      <div class="text-xs text-green-400">Party Rides</div>
-    </div>
-  </div>
+<nav class="fixed w-full z-50 glass border-b border-white/10">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
-  <div class="flex gap-4">
-    <a href="#services">Services</a>
-    <a href="#how">How It Works</a>
-    <a href="#safety">Safety</a>
-    <a href="sms:9108593520" class="btn-gold px-4 py-2 rounded">Text to Book</a>
+    <div class="flex items-center gap-3">
+      <img src="logo.png" class="h-10">
+      <div>
+        <div class="text-yellow-400 font-bold">Most Litt</div>
+        <div class="text-xs text-green-400">Party Rides</div>
+      </div>
+    </div>
+
+    <div class="flex gap-6 text-sm">
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#safety">Safety</a>
+      <a href="sms:9108593520" class="btn px-4 py-2 rounded">Text</a>
+    </div>
+
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="text-center py-20">
+<section class="min-h-screen flex items-center px-6 pt-24">
 
-  <h1 class="text-5xl font-bold gold-gradient mb-4">
-    Turn Your Weekend ALL THE WAY UP 🔥
-  </h1>
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
 
-  <p class="mb-4">
-    Party buses, jet skis & pontoon boats built for unforgettable moments
-  </p>
+    <!-- TEXT -->
+    <div class="fade">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text">
+        Turn Your Weekend Up 🔥
+      </h1>
 
-  <!-- TRUST -->
-  <p class="text-sm text-yellow-400 mb-6">
-    ⭐ 500+ Happy Customers • 5-Star Experience • Wilmington’s #1 Party Rides
-  </p>
+      <p class="text-gray-400 mb-6">
+        Party buses, jet skis & boat experiences designed for unforgettable moments.
+      </p>
 
-  <!-- CTA -->
-  <div class="flex justify-center gap-4">
-    <a href="https://www.mostlittpartyrides.com/book-online" class="btn-gold px-6 py-3 rounded">
-      Book Now
-    </a>
+      <div class="flex gap-4">
+        <a href="#" class="btn px-6 py-3 rounded">Book Now</a>
+        <a href="sms:9108593520" class="btn px-6 py-3 rounded">Text Us</a>
+      </div>
 
-    <a href="sms:9108593520" class="btn-gold px-6 py-3 rounded">
-      Text to Book
-    </a>
-  </div>
-
-  <!-- URGENCY -->
-  <p class="mt-6 text-red-400">
-    ⚠️ Weekends fill fast — reserve your spot now
-  </p>
-
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="how" class="py-20 text-center">
-
-  <h2 class="text-4xl font-bold mb-10 gold-gradient">
-    How It Works 🔥
-  </h2>
-
-  <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-
-    <div>
-      <h3 class="text-xl font-bold mb-2">1. Choose Your Ride</h3>
-      <p>Pick your party bus, jet ski, or boat</p>
+      <p class="mt-6 text-red-400 text-sm">
+        Limited availability this weekend ⚠️
+      </p>
     </div>
 
-    <div>
-      <h3 class="text-xl font-bold mb-2">2. Watch + Sign</h3>
-      <p>Complete safety video and waiver</p>
-    </div>
-
-    <div>
-      <h3 class="text-xl font-bold mb-2">3. Book Your Date</h3>
-      <p>Lock in your experience instantly</p>
+    <!-- IMAGE -->
+    <div class="fade">
+      <img src="party1.jpg" class="rounded-xl shadow-lg">
     </div>
 
   </div>
@@ -123,28 +124,28 @@ body { background:#000; color:#fff; font-family:sans-serif; }
 <!-- SERVICES -->
 <section id="services" class="py-20 text-center">
 
-  <h2 class="text-4xl font-bold mb-10 gold-gradient">
-    Choose Your Ride
+  <h2 class="text-4xl font-bold mb-10 gradient-text">
+    Choose Your Experience
   </h2>
 
-  <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
 
-    <div class="bg-gray-900 p-6 rounded">
-      <h3 class="text-xl mb-2">Party Bus</h3>
-      <p class="mb-4">Turn the city up with your crew 🔥</p>
-      <a href="party-bus.html" class="btn-gold px-4 py-2 rounded">Book</a>
+    <div class="card p-6 rounded-xl">
+      <h3 class="text-xl mb-3">Party Bus</h3>
+      <p class="text-gray-400 mb-4">Turn the city into your party</p>
+      <a href="#" class="btn px-4 py-2 rounded">Book</a>
     </div>
 
-    <div class="bg-gray-900 p-6 rounded">
-      <h3 class="text-xl mb-2">Jet Skis</h3>
-      <p class="mb-4">Hit the water full speed 🌊</p>
-      <a href="jet-skis.html" class="btn-gold px-4 py-2 rounded">Book</a>
+    <div class="card p-6 rounded-xl">
+      <h3 class="text-xl mb-3">Jet Skis</h3>
+      <p class="text-gray-400 mb-4">Fast water energy 🌊</p>
+      <a href="#" class="btn px-4 py-2 rounded">Book</a>
     </div>
 
-    <div class="bg-gray-900 p-6 rounded">
-      <h3 class="text-xl mb-2">Pontoon</h3>
-      <p class="mb-4">Relax & party on the water 🚤</p>
-      <a href="pontoon.html" class="btn-gold px-4 py-2 rounded">Book</a>
+    <div class="card p-6 rounded-xl">
+      <h3 class="text-xl mb-3">Pontoon</h3>
+      <p class="text-gray-400 mb-4">Relax + vibe on water</p>
+      <a href="#" class="btn px-4 py-2 rounded">Book</a>
     </div>
 
   </div>
@@ -152,16 +153,35 @@ body { background:#000; color:#fff; font-family:sans-serif; }
 </section>
 
 <!-- GALLERY -->
-<section class="py-20 text-center">
+<section id="gallery" class="py-20 text-center">
 
-  <h2 class="text-4xl font-bold mb-10 gold-gradient">
+  <h2 class="text-4xl font-bold mb-10 gradient-text">
     Real Vibes 🔥
   </h2>
 
-  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-    <img src="party1.jpg" class="rounded-xl hover:scale-105 transition">
-    <img src="party2.jpg" class="rounded-xl hover:scale-105 transition">
-    <img src="jetski.jpg" class="rounded-xl hover:scale-105 transition">
+  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
+
+    <div class="relative">
+      <img src="party1.jpg" class="rounded-xl">
+      <div class="absolute bottom-2 left-2 text-sm bg-black/60 px-2 py-1 rounded">
+        Birthday Energy 🎉
+      </div>
+    </div>
+
+    <div class="relative">
+      <img src="party2.jpg" class="rounded-xl">
+      <div class="absolute bottom-2 left-2 text-sm bg-black/60 px-2 py-1 rounded">
+        Night Vibes 🔥
+      </div>
+    </div>
+
+    <div class="relative">
+      <img src="jetski.jpg" class="rounded-xl">
+      <div class="absolute bottom-2 left-2 text-sm bg-black/60 px-2 py-1 rounded">
+        Water Action 🌊
+      </div>
+    </div>
+
   </div>
 
 </section>
@@ -169,64 +189,55 @@ body { background:#000; color:#fff; font-family:sans-serif; }
 <!-- SAFETY -->
 <section id="safety" class="py-20 text-center">
 
-  <h2 class="text-4xl font-bold mb-6 gold-gradient">
+  <h2 class="text-4xl font-bold mb-6 gradient-text">
     Safety First 🚨
   </h2>
 
   <div class="max-w-3xl mx-auto mb-10">
     <iframe width="100%" height="315"
       src="https://www.youtube.com/embed/YOUR_VIDEO_LINK"
-      frameborder="0"
-      allowfullscreen>
+      frameborder="0" allowfullscreen>
     </iframe>
   </div>
 
-  <div class="max-w-2xl mx-auto bg-gray-900 p-6 rounded border border-yellow-500/20">
-
-    <h3 class="text-xl font-bold mb-3 text-yellow-400">
-      Liability Waiver
-    </h3>
-
-    <p class="text-sm text-gray-300 mb-4">
-      Must be 18+. All riders must sign waiver.
-      Groups over 18 must complete individually.
+  <div class="max-w-2xl mx-auto bg-gray-900 p-6 rounded-xl border border-white/10">
+    <h3 class="text-lg font-bold mb-3">Liability Waiver</h3>
+    <p class="text-gray-400 mb-4">
+      Must be 18+. All riders must sign waiver before booking.
     </p>
 
-    <label class="flex items-center gap-2 justify-center">
+    <label class="flex justify-center gap-2">
       <input type="checkbox" required>
-      <span>I agree to the terms</span>
+      <span>I agree</span>
     </label>
-
   </div>
 
 </section>
 
-<!-- FINAL CTA -->
-<section class="text-center py-20">
+<!-- CTA -->
+<section class="py-20 text-center">
 
-  <h2 class="text-4xl font-bold gold-gradient mb-6">
-    This Isn’t Just a Ride… It’s an Experience 🔥
+  <h2 class="text-4xl font-bold mb-6 gradient-text">
+    Ready to Go Most Litt? 🔥
   </h2>
 
-  <a href="https://www.mostlittpartyrides.com/book-online"
-     class="btn-gold px-8 py-4 rounded">
-    Lock Your Spot Now
+  <a href="#" class="btn px-8 py-4 rounded">
+    Lock Your Spot
   </a>
 
 </section>
 
-<!-- FOOTER -->
-<footer class="text-center py-10 border-t border-yellow-500/20">
-  <p>© Most Litt Party Rides</p>
-</footer>
-
+<!-- SCRIPT -->
 <script>
-setTimeout(() => {
-  document.getElementById('intro').style.opacity = '0';
-  setTimeout(() => {
-    document.getElementById('intro').style.display = 'none';
-  }, 500);
-}, 1800);
+const faders = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  faders.forEach(el => {
+    if(el.getBoundingClientRect().top < window.innerHeight - 100){
+      el.classList.add('show');
+    }
+  });
+});
 </script>
 
 </body>
