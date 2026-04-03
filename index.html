@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Most Litt Party Rides</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -11,17 +11,17 @@
 body {
   background:#000;
   color:#fff;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
-/* Gradient Text */
+/* Gradient text */
 .gradient-text {
   background: linear-gradient(90deg,#facc15,#ef4444,#22c55e);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-/* Glass Nav */
+/* Glass nav */
 .glass {
   backdrop-filter: blur(12px);
   background: rgba(0,0,0,0.6);
@@ -41,7 +41,7 @@ body {
 
 /* Cards */
 .card {
-  background:#0f0f0f;
+  background:#111;
   border:1px solid rgba(255,255,255,0.05);
   transition:0.3s;
 }
@@ -50,7 +50,7 @@ body {
   border-color:rgba(250,204,21,0.3);
 }
 
-/* Fade in */
+/* Fade */
 .fade {
   opacity:0;
   transform:translateY(20px);
@@ -69,6 +69,7 @@ body {
 <nav class="fixed w-full z-50 glass border-b border-white/10">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
+    <!-- LOGO -->
     <div class="flex items-center gap-3">
       <img src="logo.png" class="h-10">
       <div>
@@ -77,11 +78,18 @@ body {
       </div>
     </div>
 
-    <div class="flex gap-6 text-sm">
+    <!-- LINKS -->
+    <div class="flex gap-6 text-sm items-center">
       <a href="#services">Services</a>
+      <a href="party-bus.html">Party Bus</a>
+      <a href="jet-skis.html">Jet Skis</a>
+      <a href="pontoon.html">Pontoon</a>
+      <a href="#events">Events</a>
       <a href="#gallery">Gallery</a>
       <a href="#safety">Safety</a>
+
       <a href="sms:9108593520" class="btn px-4 py-2 rounded">Text</a>
+      <a href="https://www.mostlittpartyrides.com/book-online" class="btn px-4 py-2 rounded">Book</a>
     </div>
 
   </div>
@@ -92,14 +100,17 @@ body {
 
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
 
-    <!-- TEXT -->
     <div class="fade">
       <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text">
-        Turn Your Weekend Up 🔥
+        Turn Your Weekend ALL THE WAY UP 🔥
       </h1>
 
       <p class="text-gray-400 mb-6">
         Party buses, jet skis & boat experiences designed for unforgettable moments.
+      </p>
+
+      <p class="text-yellow-400 mb-4 text-sm">
+        ⭐ 500+ Happy Customers • 5-Star Experience
       </p>
 
       <div class="flex gap-4">
@@ -108,11 +119,10 @@ body {
       </div>
 
       <p class="mt-6 text-red-400 text-sm">
-        Limited availability this weekend ⚠️
+        ⚠️ Weekends fill fast — reserve now
       </p>
     </div>
 
-    <!-- IMAGE -->
     <div class="fade">
       <img src="party1.jpg" class="rounded-xl shadow-lg">
     </div>
@@ -132,23 +142,40 @@ body {
 
     <div class="card p-6 rounded-xl">
       <h3 class="text-xl mb-3">Party Bus</h3>
-      <p class="text-gray-400 mb-4">Turn the city into your party</p>
-      <a href="#" class="btn px-4 py-2 rounded">Book</a>
+      <p class="text-gray-400 mb-4">Turn the city into your party 🔥</p>
+      <a href="party-bus.html" class="btn px-4 py-2 rounded">Book</a>
     </div>
 
     <div class="card p-6 rounded-xl">
       <h3 class="text-xl mb-3">Jet Skis</h3>
       <p class="text-gray-400 mb-4">Fast water energy 🌊</p>
-      <a href="#" class="btn px-4 py-2 rounded">Book</a>
+      <a href="jet-skis.html" class="btn px-4 py-2 rounded">Book</a>
     </div>
 
     <div class="card p-6 rounded-xl">
       <h3 class="text-xl mb-3">Pontoon</h3>
-      <p class="text-gray-400 mb-4">Relax + vibe on water</p>
-      <a href="#" class="btn px-4 py-2 rounded">Book</a>
+      <p class="text-gray-400 mb-4">Relax + vibe on water 🚤</p>
+      <a href="pontoon.html" class="btn px-4 py-2 rounded">Book</a>
     </div>
 
   </div>
+
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="py-20 text-center">
+
+  <h2 class="text-4xl font-bold mb-6 gradient-text">
+    Most Litt Events 🔥
+  </h2>
+
+  <p class="text-gray-400 mb-6">
+    Upcoming parties, pop-ups, and special experiences.
+  </p>
+
+  <a href="#" class="btn px-6 py-3 rounded">
+    View Events
+  </a>
 
 </section>
 
@@ -156,7 +183,7 @@ body {
 <section id="gallery" class="py-20 text-center">
 
   <h2 class="text-4xl font-bold mb-10 gradient-text">
-    Real Vibes 🔥
+    Most Litt Gallery 🔥
   </h2>
 
   <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
@@ -164,14 +191,14 @@ body {
     <div class="relative">
       <img src="party1.jpg" class="rounded-xl">
       <div class="absolute bottom-2 left-2 text-sm bg-black/60 px-2 py-1 rounded">
-        Birthday Energy 🎉
+        Birthday Vibes 🎉
       </div>
     </div>
 
     <div class="relative">
       <img src="party2.jpg" class="rounded-xl">
       <div class="absolute bottom-2 left-2 text-sm bg-black/60 px-2 py-1 rounded">
-        Night Vibes 🔥
+        Night Energy 🔥
       </div>
     </div>
 
