@@ -16,11 +16,6 @@ body { background:#000; color:#fff; font-family: system-ui, sans-serif; }
   -webkit-text-fill-color:transparent;
 }
 
-.glass {
-  backdrop-filter: blur(12px);
-  background: rgba(0,0,0,0.6);
-}
-
 .btn {
   background: linear-gradient(90deg,#facc15,#ef4444,#22c55e);
   color:#000;
@@ -56,8 +51,8 @@ body { background:#000; color:#fff; font-family: system-ui, sans-serif; }
 
 <body>
 
-<!-- NAVBAR FIXED -->
-<nav class="fixed w-full z-50 glass border-b border-white/10">
+<!-- ✅ FIXED NAVBAR -->
+<nav class="fixed w-full z-50 bg-black border-b border-white/10">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
 
     <!-- LOGO -->
@@ -70,7 +65,7 @@ body { background:#000; color:#fff; font-family: system-ui, sans-serif; }
     </div>
 
     <!-- DESKTOP NAV -->
-    <div class="hidden md:flex gap-5 text-sm items-center">
+    <div class="hidden md:flex gap-6 text-sm items-center">
       <a href="#services">Services</a>
       <a href="party-bus.html">Bus</a>
       <a href="jet-skis.html">Jet Skis</a>
@@ -79,11 +74,11 @@ body { background:#000; color:#fff; font-family: system-ui, sans-serif; }
       <a href="#gallery">Gallery</a>
       <a href="#safety">Safety</a>
 
-      <a href="sms:9108593520" class="btn px-3 py-1 rounded text-xs">Text</a>
-      <a href="https://www.mostlittpartyrides.com/book-online" class="btn px-3 py-1 rounded text-xs">Book</a>
+      <a href="sms:9108593520" class="px-4 py-2 rounded bg-yellow-400 text-black font-semibold">Text</a>
+      <a href="https://www.mostlittpartyrides.com/book-online" class="px-4 py-2 rounded bg-green-400 text-black font-semibold">Book</a>
     </div>
 
-    <!-- MOBILE MENU BUTTON -->
+    <!-- MOBILE BUTTON -->
     <button onclick="toggleMenu()" class="md:hidden text-white text-2xl">
       ☰
     </button>
@@ -91,17 +86,21 @@ body { background:#000; color:#fff; font-family: system-ui, sans-serif; }
   </div>
 
   <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="hidden flex-col bg-black px-4 pb-4 space-y-3 md:hidden">
-    <a href="#services">Services</a>
-    <a href="party-bus.html">Party Bus</a>
-    <a href="jet-skis.html">Jet Skis</a>
-    <a href="pontoon.html">Pontoon</a>
-    <a href="#events">Events</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#safety">Safety</a>
+  <div id="mobileMenu" class="hidden md:hidden bg-black border-t border-white/10">
+    <div class="flex flex-col px-4 py-4 space-y-4 text-sm">
 
-    <a href="sms:9108593520" class="btn px-4 py-2 rounded text-center">Text</a>
-    <a href="https://www.mostlittpartyrides.com/book-online" class="btn px-4 py-2 rounded text-center">Book</a>
+      <a href="#services">Services</a>
+      <a href="party-bus.html">Party Bus</a>
+      <a href="jet-skis.html">Jet Skis</a>
+      <a href="pontoon.html">Pontoon</a>
+      <a href="#events">Events</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#safety">Safety</a>
+
+      <a href="sms:9108593520" class="px-4 py-2 rounded bg-yellow-400 text-black text-center font-semibold">Text</a>
+      <a href="https://www.mostlittpartyrides.com/book-online" class="px-4 py-2 rounded bg-green-400 text-black text-center font-semibold">Book</a>
+
+    </div>
   </div>
 </nav>
 
@@ -136,6 +135,54 @@ body { background:#000; color:#fff; font-family: system-ui, sans-serif; }
     <div class="fade">
       <img src="party1.jpg" class="rounded-xl shadow-lg">
     </div>
+
+  </div>
+
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-20 text-center">
+
+  <h2 class="text-4xl font-bold mb-10 gradient-text">
+    Choose Your Experience
+  </h2>
+
+  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
+
+    <div class="card p-6 rounded-xl">
+      <h3 class="text-xl mb-3">Party Bus</h3>
+      <p class="text-gray-400 mb-4">Turn the city into your party 🔥</p>
+      <a href="party-bus.html" class="btn px-4 py-2 rounded">Book</a>
+    </div>
+
+    <div class="card p-6 rounded-xl">
+      <h3 class="text-xl mb-3">Jet Skis</h3>
+      <p class="text-gray-400 mb-4">Fast water energy 🌊</p>
+      <a href="jet-skis.html" class="btn px-4 py-2 rounded">Book</a>
+    </div>
+
+    <div class="card p-6 rounded-xl">
+      <h3 class="text-xl mb-3">Pontoon</h3>
+      <p class="text-gray-400 mb-4">Relax + vibe on water 🚤</p>
+      <a href="pontoon.html" class="btn px-4 py-2 rounded">Book</a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="py-20 text-center">
+
+  <h2 class="text-4xl font-bold mb-10 gradient-text">
+    Most Litt Gallery 🔥
+  </h2>
+
+  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
+
+    <img src="party1.jpg" class="rounded-xl">
+    <img src="party2.jpg" class="rounded-xl">
+    <img src="jetski.jpg" class="rounded-xl">
 
   </div>
 
