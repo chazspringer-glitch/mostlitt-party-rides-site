@@ -491,6 +491,74 @@
     }
     .svc-link:hover { gap: 9px; }
 
+    /* ── Gallery ── */
+    .section-darker { background: #080808; }
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 52px;
+    }
+    @media (max-width: 680px) {
+      .gal-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 681px) and (max-width: 900px) {
+      .gal-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .gal-item {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      height: 260px;
+      background: #161616;
+      border: 1px solid rgba(255,255,255,0.07);
+      cursor: pointer;
+    }
+    .gal-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+    .gal-item:hover img { transform: scale(1.07); }
+    .gal-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 18px;
+    }
+    .gal-item:hover .gal-overlay { opacity: 1; }
+    .gal-overlay span {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .gal-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #4b5563;
+      pointer-events: none;
+    }
+    .gal-placeholder .icon { font-size: 2.8rem; }
+    .gal-placeholder p {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
     .hero-scroll {
       position: absolute;
       bottom: 30px;
@@ -653,6 +721,53 @@
             <span class="svc-price">From $450 / 3 hrs</span>
             <a href="pontoon.html" class="svc-link">View Details →</a>
           </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section class="section section-darker" id="gallery">
+  <div class="wrap">
+
+    <div class="reveal">
+      <p class="sec-label">Real Vibes</p>
+      <div class="grad-line"></div>
+      <h2 class="sec-title">See the Experience</h2>
+      <p class="sec-sub">Real moments, real memories. This is what Most Litt looks like.</p>
+    </div>
+
+    <div class="gal-grid">
+
+      <div class="gal-item reveal">
+        <img src="party1.jpg" alt="Party bus experience" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="gal-overlay"><span>Party Bus Vibes</span></div>
+        <div class="gal-placeholder">
+          <div class="icon">🎉</div>
+          <p>Party Bus</p>
+        </div>
+      </div>
+
+      <div class="gal-item reveal" style="transition-delay: 0.1s">
+        <img src="party2.jpg" alt="Group party on the water" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="gal-overlay"><span>Good Times</span></div>
+        <div class="gal-placeholder">
+          <div class="icon">🥂</div>
+          <p>Group Fun</p>
+        </div>
+      </div>
+
+      <div class="gal-item reveal" style="transition-delay: 0.2s">
+        <img src="jetski.jpg" alt="Jet ski on the water" loading="lazy"
+             onerror="this.style.display='none'">
+        <div class="gal-overlay"><span>Jet Ski Adventures</span></div>
+        <div class="gal-placeholder">
+          <div class="icon">🌊</div>
+          <p>Jet Skis</p>
         </div>
       </div>
 
