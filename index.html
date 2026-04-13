@@ -352,6 +352,145 @@
       color: var(--r);
     }
     .hero-urgency::before { content: "⚡ "; }
+
+    /* ── Services ── */
+    .section {
+      padding: 90px 20px;
+    }
+    .section-dark { background: #0f0f0f; }
+    .wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .sec-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--y);
+      margin-bottom: 10px;
+    }
+    .grad-line {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--y), var(--r));
+      border-radius: 3px;
+      margin-bottom: 18px;
+    }
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .sec-sub {
+      font-size: 1rem;
+      color: #9ca3af;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.show { opacity: 1; transform: none; }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 52px;
+    }
+    .svc-card {
+      background: #161616;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .svc-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(250,204,21,0.25);
+      box-shadow: 0 16px 48px rgba(250,204,21,0.10);
+    }
+    .svc-thumb {
+      height: 190px;
+      background: #1e1e1e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .svc-thumb::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(to top, #161616, transparent);
+    }
+    .svc-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .svc-badge {
+      display: inline-block;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .svc-badge-y { background: rgba(250,204,21,0.12); color: var(--y); border: 1px solid rgba(250,204,21,0.25); }
+    .svc-badge-r { background: rgba(239,68,68,0.12);  color: var(--r); border: 1px solid rgba(239,68,68,0.25); }
+    .svc-badge-g { background: rgba(34,197,94,0.12);  color: var(--g); border: 1px solid rgba(34,197,94,0.25); }
+    .svc-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .svc-card p {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .svc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .svc-price {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--y);
+      letter-spacing: 0.04em;
+    }
+    .svc-link {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--y);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap 0.2s;
+    }
+    .svc-link:hover { gap: 9px; }
+
     .hero-scroll {
       position: absolute;
       bottom: 30px;
@@ -462,6 +601,65 @@
   <div class="hero-scroll">Scroll</div>
 </section>
 
+<!-- ── SERVICES ── -->
+<section class="section section-dark" id="services">
+  <div class="wrap">
+
+    <div class="reveal">
+      <p class="sec-label">What We Offer</p>
+      <div class="grad-line"></div>
+      <h2 class="sec-title">Choose Your Vibe</h2>
+      <p class="sec-sub">Three premium experiences, one crew. Pick your ride and we'll handle the rest.</p>
+    </div>
+
+    <div class="svc-grid">
+
+      <!-- Party Bus -->
+      <div class="svc-card reveal">
+        <div class="svc-thumb">🚌</div>
+        <div class="svc-body">
+          <span class="svc-badge svc-badge-y">Most Popular</span>
+          <h3>Party Bus</h3>
+          <p>Up to 20 guests, custom LED lighting, premium Bluetooth sound, and a professional licensed driver. The ultimate mobile party rolling through Wilmington.</p>
+          <div class="svc-footer">
+            <span class="svc-price">From $350 / 2 hrs</span>
+            <a href="party-bus.html" class="svc-link">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jet Skis -->
+      <div class="svc-card reveal" style="transition-delay: 0.1s">
+        <div class="svc-thumb">🌊</div>
+        <div class="svc-body">
+          <span class="svc-badge svc-badge-r">High Adrenaline</span>
+          <h3>Jet Skis</h3>
+          <p>Hit 65+ MPH on the open water with certified guides and fully fueled skis. Solo or tandem options. Coast Guard-approved gear included for every rider.</p>
+          <div class="svc-footer">
+            <span class="svc-price">From $150 / hr</span>
+            <a href="jet-skis.html" class="svc-link">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pontoon -->
+      <div class="svc-card reveal" style="transition-delay: 0.2s">
+        <div class="svc-thumb">⛵</div>
+        <div class="svc-body">
+          <span class="svc-badge svc-badge-g">BYOB Friendly</span>
+          <h3>Pontoon Boat</h3>
+          <p>Up to 12 guests, certified captain, Bluetooth speaker, cooler &amp; ice. Cruise the coast at your own pace with scenic views and your whole crew.</p>
+          <div class="svc-footer">
+            <span class="svc-price">From $450 / 3 hrs</span>
+            <a href="pontoon.html" class="svc-link">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <script>
   function toggleNav() {
     var m = document.getElementById('mnav');
@@ -483,6 +681,16 @@
     document.getElementById('nav').style.boxShadow =
       window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,0.6)' : 'none';
   });
+
+  /* Scroll reveal */
+  (function() {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(en) {
+        if (en.isIntersecting) { en.target.classList.add('show'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  })();
 
   /* Particles */
   (function() {
