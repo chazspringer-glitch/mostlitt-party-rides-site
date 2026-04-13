@@ -559,6 +559,173 @@
       text-transform: uppercase;
     }
 
+    /* ── Safety ── */
+    .safety-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-top: 52px;
+    }
+    @media (min-width: 860px) {
+      .safety-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #161616;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .safety-rules {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .safety-rule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: #e5e7eb;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .safety-rule:last-child { border-bottom: none; }
+    .rule-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--g);
+      flex-shrink: 0;
+    }
+    .waiver-box {
+      background: #161616;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .waiver-badge {
+      display: inline-block;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 999px;
+      background: rgba(239,68,68,0.12);
+      color: var(--r);
+      border: 1px solid rgba(239,68,68,0.25);
+      width: fit-content;
+    }
+    .waiver-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+    .waiver-box > p {
+      font-size: 0.87rem;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+    .waiver-scroll {
+      height: 200px;
+      overflow-y: auto;
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 0.81rem;
+      color: #9ca3af;
+      line-height: 1.8;
+      scrollbar-width: thin;
+      scrollbar-color: var(--y) #0f0f0f;
+    }
+    .waiver-scroll::-webkit-scrollbar { width: 4px; }
+    .waiver-scroll::-webkit-scrollbar-track { background: #0f0f0f; }
+    .waiver-scroll::-webkit-scrollbar-thumb { background: var(--y); border-radius: 4px; }
+    .waiver-scroll strong { color: #e5e7eb; }
+    .waiver-check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      cursor: pointer;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,0.07);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .waiver-check-row:hover {
+      background: rgba(250,204,21,0.06);
+      border-color: rgba(250,204,21,0.3);
+    }
+    .wchk {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border-radius: 5px;
+      border: 2px solid rgba(250,204,21,0.5);
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: #000;
+    }
+    .wchk.on { background: var(--y); border-color: var(--y); }
+    .waiver-check-row span {
+      font-size: 0.86rem;
+      color: #e5e7eb;
+      line-height: 1.55;
+    }
+    #waiverBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 14px;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--y), var(--r));
+      color: #000;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(250,204,21,0.3);
+      transition: all 0.25s;
+      text-decoration: none;
+    }
+    #waiverBtn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(250,204,21,0.45);
+    }
+    #waiverBtn:disabled {
+      opacity: 0.38;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .waiver-note {
+      font-size: 0.74rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
     .hero-scroll {
       position: absolute;
       bottom: 30px;
@@ -775,6 +942,83 @@
   </div>
 </section>
 
+<!-- ── SAFETY ── -->
+<section class="section section-dark" id="safety">
+  <div class="wrap">
+
+    <div class="reveal">
+      <p class="sec-label">Safety First</p>
+      <div class="grad-line"></div>
+      <h2 class="sec-title">We Keep You Safe</h2>
+      <p class="sec-sub">Fun and safety go hand in hand. Watch our safety video, then sign the waiver to book.</p>
+    </div>
+
+    <div class="safety-grid">
+
+      <!-- Video + rules -->
+      <div class="reveal">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+            title="Most Litt Party Rides — Safety Video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+        <div class="safety-rules">
+          <div class="safety-rule"><div class="rule-dot"></div>All riders must wear Coast Guard-approved life jackets</div>
+          <div class="safety-rule"><div class="rule-dot"></div>18+ required — valid ID checked at booking</div>
+          <div class="safety-rule"><div class="rule-dot"></div>No operating watercraft under the influence</div>
+          <div class="safety-rule"><div class="rule-dot"></div>Follow all captain and guide instructions at all times</div>
+          <div class="safety-rule"><div class="rule-dot"></div>Maximum capacity limits strictly enforced</div>
+        </div>
+      </div>
+
+      <!-- Waiver -->
+      <div class="waiver-box reveal" style="transition-delay: 0.1s">
+        <span class="waiver-badge">Required Before Booking</span>
+        <h3>Liability Waiver</h3>
+        <p>Please read the full waiver below. You must agree before proceeding to booking. All participants 18+.</p>
+
+        <div class="waiver-scroll">
+          <strong>LIABILITY WAIVER &amp; ASSUMPTION OF RISK</strong><br><br>
+          <strong>1. Assumption of Risk</strong><br>
+          I voluntarily participate in activities offered by Most Litt Party Rides, including party bus, jet ski, and pontoon rentals. I understand these carry inherent risks including personal injury, property damage, or death.<br><br>
+          <strong>2. Release of Liability</strong><br>
+          I release Most Litt Party Rides, its owners, employees, and agents from any and all claims, damages, or liability arising from participation, including those caused by negligence.<br><br>
+          <strong>3. Age Requirement</strong><br>
+          I confirm all participants are 18+, or are minors accompanied by a parent or legal guardian who accepts full responsibility.<br><br>
+          <strong>4. Conduct</strong><br>
+          I agree to follow all safety instructions and behave in a manner that does not endanger myself or others. Disruptive behavior may result in immediate termination of service without refund.<br><br>
+          <strong>5. Alcohol Policy</strong><br>
+          BYOB is permitted on select services. Operating watercraft while impaired is illegal and dangerous. Most Litt Party Rides reserves the right to deny service to visibly intoxicated individuals.<br><br>
+          <strong>6. Property Damage</strong><br>
+          I accept financial responsibility for any damage caused by myself or my party due to misuse or negligence.<br><br>
+          <strong>7. Capacity &amp; Safety</strong><br>
+          I agree to comply with all capacity limits and posted safety regulations. Overloading any vehicle or vessel is strictly prohibited.<br><br>
+          <strong>8. Cancellation</strong><br>
+          Cancellations within 24 hours of booking are non-refundable. Weather cancellations by Most Litt Party Rides will be rescheduled or refunded.<br><br>
+          <strong>9. Indemnification</strong><br>
+          I agree to indemnify and hold harmless Most Litt Party Rides from any claims arising from my participation or that of my group.<br><br>
+          <strong>10. Acknowledgment</strong><br>
+          I have read this waiver in full, understand its contents, and voluntarily agree to be bound by its terms as a legally binding agreement.
+        </div>
+
+        <div class="waiver-check-row" onclick="toggleWaiver()">
+          <div class="wchk" id="wchk"></div>
+          <span>I have read and agree to the full liability waiver. I confirm all participants are 18+ and understand a signed waiver is required before any activity.</span>
+        </div>
+
+        <button id="waiverBtn" disabled onclick="proceedBook()">🎉 Proceed to Book</button>
+        <p class="waiver-note">You'll be taken to our secure booking platform</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <script>
   function toggleNav() {
     var m = document.getElementById('mnav');
@@ -796,6 +1040,18 @@
     document.getElementById('nav').style.boxShadow =
       window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,0.6)' : 'none';
   });
+
+  /* Waiver */
+  var waiverOn = false;
+  function toggleWaiver() {
+    waiverOn = !waiverOn;
+    document.getElementById('wchk').classList.toggle('on', waiverOn);
+    document.getElementById('wchk').textContent = waiverOn ? '✓' : '';
+    document.getElementById('waiverBtn').disabled = !waiverOn;
+  }
+  function proceedBook() {
+    if (waiverOn) window.open('https://www.mostlittpartyrides.com/book-online', '_blank');
+  }
 
   /* Scroll reveal */
   (function() {
