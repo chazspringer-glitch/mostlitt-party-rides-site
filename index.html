@@ -785,7 +785,7 @@
     <!-- Desktop CTAs -->
     <div class="nav-cta">
       <a href="sms:9108593520" class="btn-sms">📱 Text Us</a>
-      <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" rel="noopener" class="btn-book">Book Now</a>
+      <a href="https://calendly.com/YOUR-LINK" target="_blank" rel="noopener" class="btn-book">Book Now</a>
     </div>
 
     <!-- Hamburger -->
@@ -808,7 +808,7 @@
       <a href="#safety" onclick="closeNav()">Safety</a>
       <div class="mnav-cta">
         <a href="sms:9108593520" class="ms" onclick="closeNav()">📱 Text Us</a>
-        <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" rel="noopener" class="mb" onclick="closeNav()">Book Now</a>
+        <a href="https://calendly.com/YOUR-LINK" target="_blank" rel="noopener" class="mb" onclick="closeNav()">Book Now</a>
       </div>
     </div>
   </div>
@@ -826,7 +826,7 @@
     <p>Party buses, jet skis &amp; pontoon cruises — premium group experiences built for Wilmington, NC. Pick your vibe and let's make it happen.</p>
 
     <div class="hero-btns">
-      <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" rel="noopener" class="btn btn-prim btn-lg">🎉 Book Now</a>
+      <a href="https://calendly.com/YOUR-LINK" target="_blank" rel="noopener" class="btn btn-prim btn-lg">🎉 Book Now</a>
       <a href="sms:9108593520" class="btn btn-grn btn-lg">📱 Text Us</a>
     </div>
 
@@ -835,6 +835,14 @@
 
   <div class="hero-scroll">Scroll</div>
 </section>
+
+<!-- ── SAFETY NOTICE ── -->
+<div style="background: rgba(239,68,68,0.08); border-top: 1px solid rgba(239,68,68,0.2); border-bottom: 1px solid rgba(239,68,68,0.2); padding: 14px 20px; text-align: center;">
+  <p style="font-size: 0.85rem; font-weight: 600; color: #fca5a5; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+    <span style="color: #ef4444; font-weight: 800; margin-right: 6px;">⚠️ Safety Notice:</span>
+    All participants must sign a waiver before participating in any activity.
+  </p>
+</div>
 
 <!-- ── SERVICES ── -->
 <section class="section section-dark" id="services">
@@ -1102,7 +1110,11 @@
     document.getElementById('waiverBtn').disabled = !waiverOn;
   }
   function proceedBook() {
-    if (waiverOn) window.open('https://www.mostlittpartyrides.com/book-online', '_blank');
+    var btn = document.getElementById('waiverBtn');
+    if (btn.dataset.clicked) return;
+    btn.dataset.clicked = '1';
+    setTimeout(function(){ delete btn.dataset.clicked; }, 3000);
+    if (waiverOn) window.open('https://calendly.com/YOUR-LINK', '_blank');
   }
 
   /* Scroll reveal */

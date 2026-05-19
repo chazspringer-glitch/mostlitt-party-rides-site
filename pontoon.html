@@ -98,7 +98,7 @@
           <a href="party-bus.html" class="nav-link">Party Bus</a>
           <a href="jet-skis.html" class="nav-link">Jet Skis</a>
           <a href="pontoon.html" class="nav-link" style="color: #f59e0b;">Pontoon</a>
-          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-2 rounded text-sm">Book Now</a>
+          <a href="https://calendly.com/YOUR-LINK" target="_blank" class="btn-gold px-5 py-2 rounded text-sm">Book Now</a>
         </div>
         <button class="md:hidden p-2" onclick="toggleMenu()" aria-label="Menu">
           <div class="w-6 h-0.5 bg-amber-500 mb-1.5"></div>
@@ -112,7 +112,7 @@
       <a href="party-bus.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Party Bus</a>
       <a href="jet-skis.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Jet Skis</a>
       <a href="pontoon.html" class="nav-link py-3 text-base block" style="color: #f59e0b;">Pontoon</a>
-      <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-3 rounded text-sm text-center block mt-2">Book Now</a>
+      <a href="https://calendly.com/YOUR-LINK" target="_blank" class="btn-gold px-5 py-3 rounded text-sm text-center block mt-2">Book Now</a>
     </div>
   </nav>
 
@@ -342,7 +342,7 @@
           <a href="index.html" class="text-sm nav-link">Home</a>
           <a href="party-bus.html" class="text-sm nav-link">Party Bus</a>
           <a href="jet-skis.html" class="text-sm nav-link">Jet Skis</a>
-          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="text-sm nav-link" style="color: #f59e0b;">Book Online</a>
+          <a href="https://calendly.com/YOUR-LINK" target="_blank" class="text-sm nav-link" style="color: #f59e0b;">Book Online</a>
         </div>
       </div>
       <div class="divider-gold mt-8"></div>
@@ -373,12 +373,16 @@
     }
 
     function proceedToBooking() {
+      var btn = document.getElementById('bookBtn');
+      if (btn.dataset.clicked) return;
+      btn.dataset.clicked = '1';
+      setTimeout(function(){ delete btn.dataset.clicked; }, 3000);
       if (!isChecked) {
         document.getElementById('waiverError').classList.remove('hidden');
         document.getElementById('waiverBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-      window.open('https://www.mostlittpartyrides.com/book-online', '_blank');
+      window.open('https://calendly.com/YOUR-LINK', '_blank');
     }
 
     document.getElementById('waiverBox').addEventListener('scroll', function() {

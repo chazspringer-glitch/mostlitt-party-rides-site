@@ -96,7 +96,7 @@
           <a href="party-bus.html" class="nav-link">Party Bus</a>
           <a href="jet-skis.html" class="nav-link" style="color: #f59e0b;">Jet Skis</a>
           <a href="pontoon.html" class="nav-link">Pontoon</a>
-          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-2 rounded text-sm">Book Now</a>
+          <a href="https://calendly.com/YOUR-LINK" target="_blank" class="btn-gold px-5 py-2 rounded text-sm">Book Now</a>
         </div>
         <button class="md:hidden p-2" onclick="toggleMenu()" aria-label="Menu">
           <div class="w-6 h-0.5 bg-amber-500 mb-1.5"></div>
@@ -110,7 +110,7 @@
       <a href="party-bus.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Party Bus</a>
       <a href="jet-skis.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1); color: #f59e0b;">Jet Skis</a>
       <a href="pontoon.html" class="nav-link py-3 text-base block">Pontoon</a>
-      <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="btn-gold px-5 py-3 rounded text-sm text-center block mt-2">Book Now</a>
+      <a href="https://calendly.com/YOUR-LINK" target="_blank" class="btn-gold px-5 py-3 rounded text-sm text-center block mt-2">Book Now</a>
     </div>
   </nav>
 
@@ -266,6 +266,66 @@
     </div>
   </section>
 
+  <!-- Rider Info Form -->
+  <section class="py-14 px-4 sm:px-6" style="background: linear-gradient(180deg, #000 0%, #000d0d 50%, #000 100%);">
+    <div class="max-w-lg mx-auto">
+      <div class="text-center mb-8 animate-on-scroll">
+        <div class="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase" style="border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; background: rgba(245,158,11,0.05);">Step 1</div>
+        <h2 class="font-display text-3xl font-bold text-white">Rider <span class="gold-gradient">Information</span></h2>
+        <p class="text-sm mt-2" style="color: rgba(255,255,255,0.5);">Submit your details before your ride. A valid driver's license is required.</p>
+      </div>
+
+      <form id="riderForm" onsubmit="submitRiderForm(event)" class="animate-on-scroll rounded-2xl p-6 sm:p-8 space-y-5" style="background: linear-gradient(145deg, #0a0a0a, #050505); border: 1px solid rgba(245,158,11,0.2);">
+
+        <!-- Name -->
+        <div>
+          <label for="riderName" class="block text-sm font-semibold mb-2" style="color: rgba(255,255,255,0.75);">Full Name</label>
+          <input
+            type="text"
+            id="riderName"
+            name="name"
+            placeholder="Your full name"
+            required
+            style="width:100%; background:#111; border:1px solid rgba(245,158,11,0.25); border-radius:10px; padding:12px 16px; color:#fff; font-size:0.95rem; outline:none; transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='rgba(245,158,11,0.6)'"
+            onblur="this.style.borderColor='rgba(245,158,11,0.25)'"
+          >
+        </div>
+
+        <!-- Driver's License Upload -->
+        <div>
+          <label for="licenseUpload" class="block text-sm font-semibold mb-2" style="color: rgba(255,255,255,0.75);">Driver's License <span style="color: rgba(255,255,255,0.4); font-weight:400;">(photo or scan)</span></label>
+          <label for="licenseUpload" id="uploadLabel" style="display:flex; align-items:center; justify-content:center; gap:10px; width:100%; background:#111; border:1px dashed rgba(245,158,11,0.3); border-radius:10px; padding:20px 16px; cursor:pointer; transition:border-color 0.2s; text-align:center;">
+            <span style="font-size:1.4rem;">🪪</span>
+            <span id="uploadText" style="font-size:0.88rem; color:rgba(255,255,255,0.5);">Tap to upload your license</span>
+          </label>
+          <input
+            type="file"
+            id="licenseUpload"
+            name="license"
+            accept="image/*,.pdf"
+            required
+            style="display:none;"
+            onchange="updateUploadLabel(this)"
+          >
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          id="submitBtn"
+          class="btn-gold w-full py-4 rounded-xl text-sm font-bold tracking-wider uppercase"
+          style="width:100%;"
+        >
+          Submit Information
+        </button>
+
+        <p id="formSuccess" style="display:none; text-align:center; font-size:0.85rem; color:#4ade80; font-weight:600;">✓ Submitted! We'll confirm your booking shortly.</p>
+
+      </form>
+    </div>
+  </section>
+
   <!-- Video Section -->
   <section class="py-16 px-4 sm:px-6" style="background: #000;">
     <div class="max-w-3xl mx-auto">
@@ -379,7 +439,7 @@
           <a href="index.html" class="text-sm nav-link">Home</a>
           <a href="party-bus.html" class="text-sm nav-link">Party Bus</a>
           <a href="pontoon.html" class="text-sm nav-link">Pontoon</a>
-          <a href="https://www.mostlittpartyrides.com/book-online" target="_blank" class="text-sm nav-link" style="color: #f59e0b;">Book Online</a>
+          <a href="https://calendly.com/YOUR-LINK" target="_blank" class="text-sm nav-link" style="color: #f59e0b;">Book Online</a>
         </div>
       </div>
       <div class="divider-gold mt-8"></div>
@@ -389,6 +449,28 @@
 
   <script>
     function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+
+    function updateUploadLabel(input) {
+      var label = document.getElementById('uploadText');
+      if (input.files && input.files[0]) {
+        label.textContent = '✓ ' + input.files[0].name;
+        label.style.color = '#4ade80';
+        document.getElementById('uploadLabel').style.borderColor = 'rgba(34,197,94,0.5)';
+      }
+    }
+
+    function submitRiderForm(e) {
+      e.preventDefault();
+      var btn = document.getElementById('submitBtn');
+      if (btn.dataset.submitted) return;
+      btn.dataset.submitted = '1';
+      btn.textContent = 'Submitting…';
+      btn.style.opacity = '0.6';
+      setTimeout(function() {
+        document.getElementById('riderForm').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      }, 800);
+    }
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => { navbar.style.background = window.scrollY > 50 ? 'rgba(0,0,0,0.97)' : 'rgba(0,0,0,0.85)'; });
     const observer = new IntersectionObserver((entries) => {
@@ -410,12 +492,16 @@
     }
 
     function proceedToBooking() {
+      var btn = document.getElementById('bookBtn');
+      if (btn.dataset.clicked) return;
+      btn.dataset.clicked = '1';
+      setTimeout(function(){ delete btn.dataset.clicked; }, 3000);
       if (!isChecked) {
         document.getElementById('waiverError').classList.remove('hidden');
         document.getElementById('waiverBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-      window.open('https://www.mostlittpartyrides.com/book-online', '_blank');
+      window.open('https://calendly.com/YOUR-LINK', '_blank');
     }
 
     document.getElementById('waiverBox').addEventListener('scroll', function() {
