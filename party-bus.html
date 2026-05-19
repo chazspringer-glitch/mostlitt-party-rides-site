@@ -32,6 +32,7 @@
       color: #fff;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
+      padding-top: 68px;
     }
 
     .font-display { font-family: 'Playfair Display', serif; }
@@ -210,41 +211,138 @@
     .glow-text {
       text-shadow: 0 0 30px rgba(245,158,11,0.5), 0 0 60px rgba(245,158,11,0.2);
     }
+
+    /* ── Navbar ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 999; height: 68px;
+      background: rgba(8,8,8,0.93);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(250,204,21,0.15);
+      transition: box-shadow 0.3s;
+    }
+    .nav-wrap {
+      max-width: 1240px; margin: 0 auto; padding: 0 20px;
+      height: 100%; display: flex; align-items: center;
+      justify-content: space-between; gap: 12px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; }
+    .brand-logo { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+    .brand-fb {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: linear-gradient(135deg, #facc15, #ef4444);
+      display: none; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-weight: 900;
+      font-size: 1.1rem; color: #000; flex-shrink: 0;
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-text strong {
+      font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.05rem;
+      background: linear-gradient(135deg, #facc15, #ef4444);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .brand-text span { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: #9ca3af; }
+    .nav-links { display: none; align-items: center; gap: 2px; }
+    .snav-link {
+      font-size: 0.82rem; font-weight: 600; color: #e5e7eb;
+      padding: 7px 10px; border-radius: 6px;
+      transition: color 0.2s, background 0.2s; text-decoration: none;
+    }
+    .snav-link:hover { color: #facc15; background: rgba(250,204,21,0.10); }
+    .snav-active { color: #facc15 !important; background: rgba(250,204,21,0.10); }
+    .nav-cta { display: none; align-items: center; gap: 8px; flex-shrink: 0; }
+    .btn-sms {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; color: #22c55e;
+      border: 1.5px solid #22c55e; border-radius: 999px;
+      padding: 8px 16px; transition: all 0.2s; text-decoration: none;
+    }
+    .btn-sms:hover { background: rgba(34,197,94,0.12); }
+    .btn-book {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; color: #000;
+      background: linear-gradient(135deg, #facc15, #ef4444);
+      border-radius: 999px; padding: 8px 18px; transition: all 0.2s;
+      box-shadow: 0 3px 14px rgba(250,204,21,0.30); text-decoration: none;
+    }
+    .btn-book:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(250,204,21,0.45); }
+    .burger { display: flex; flex-direction: column; gap: 5px; padding: 8px; border-radius: 6px; cursor: pointer; background: none; border: none; }
+    .burger span { display: block; width: 22px; height: 2px; background: #facc15; border-radius: 2px; transition: all 0.3s; transform-origin: center; }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mnav {
+      position: absolute; top: 68px; left: 0; right: 0;
+      background: rgba(8,8,8,0.97); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(250,204,21,0.15);
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+    }
+    .mnav.open { max-height: 560px; }
+    .mnav-inner { padding: 12px 20px 24px; display: flex; flex-direction: column; gap: 2px; }
+    .mnav-inner a {
+      display: block; font-size: 0.98rem; font-weight: 600; color: #e5e7eb;
+      padding: 11px 14px; border-radius: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.2s, background 0.2s; text-decoration: none;
+    }
+    .mnav-inner a:last-of-type { border-bottom: none; }
+    .mnav-inner a:hover { color: #facc15; background: rgba(250,204,21,0.10); }
+    .mnav-cta { display: flex; gap: 10px; margin-top: 14px; }
+    .mnav-cta a {
+      flex: 1; text-align: center; font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 11px 10px; border-radius: 999px; border-bottom: none !important;
+    }
+    .mnav-cta .ms { color: #22c55e; border: 1.5px solid #22c55e; }
+    .mnav-cta .ms:hover { background: rgba(34,197,94,0.12); }
+    .mnav-cta .mb { color: #000; background: linear-gradient(135deg, #facc15, #ef4444); box-shadow: 0 3px 14px rgba(250,204,21,0.30); }
+    @media (min-width: 900px) { .nav-links, .nav-cta { display: flex; } .burger { display: none; } }
   </style>
 </head>
 <body>
 
   <!-- Navigation -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245,158,11,0.15);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <a href="index.html" class="flex items-center gap-3">
-          <img src="logo.png" alt="Most Litt Party Rides" style="width:40px;height:40px;border-radius:8px;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="display:none;width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#b45309,#f59e0b);align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:#000;flex-shrink:0">ML</div>
-          <div>
-            <div class="font-display text-base font-bold leading-tight" style="color: #f59e0b;">Most Litt</div>
-            <div class="text-xs tracking-widest uppercase" style="color: rgba(245,158,11,0.7);">Party Rides</div>
-          </div>
-        </a>
-        <div class="hidden md:flex items-center gap-8">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="party-bus.html" class="nav-link" style="color: #f59e0b;">Party Bus</a>
-          <a href="jet-skis.html" class="nav-link">Jet Skis</a>
-          <a href="pontoon.html" class="nav-link">Pontoon</a>
-          <a href="https://calendly.com/YOUR-LINK" target="_blank" class="btn-gold px-5 py-2 rounded text-sm">Book Now</a>
-        </div>
-        <button class="md:hidden p-2" onclick="toggleMenu()" aria-label="Menu">
-          <div class="w-6 h-0.5 bg-amber-500 mb-1.5"></div>
-          <div class="w-6 h-0.5 bg-amber-500 mb-1.5"></div>
-          <div class="w-6 h-0.5 bg-amber-500"></div>
-        </button>
+  <nav id="nav">
+    <div class="nav-wrap">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Most Litt Party Rides" class="brand-logo"
+             onerror="this.style.display='none'; document.getElementById('bfb-pb').style.display='flex';">
+        <div class="brand-fb" id="bfb-pb">ML</div>
+        <div class="brand-text"><strong>Most Litt</strong><span>Party Rides</span></div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="snav-link">Home</a>
+        <a href="index.html#services" class="snav-link">Services</a>
+        <a href="party-bus.html" class="snav-link snav-active">Party Bus</a>
+        <a href="jet-skis.html" class="snav-link">Jet Skis</a>
+        <a href="pontoon.html" class="snav-link">Pontoon</a>
+        <a href="index.html#events" class="snav-link">Events</a>
+        <a href="index.html#gallery" class="snav-link">Gallery</a>
+        <a href="index.html#safety" class="snav-link">Safety</a>
       </div>
+      <div class="nav-cta">
+        <a href="sms:9108593520" class="btn-sms">📱 Text Us</a>
+        <a href="https://calendly.com/YOUR-LINK" target="_blank" rel="noopener" class="btn-book">Book Now</a>
+      </div>
+      <button class="burger" id="burger" onclick="toggleNav()" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div id="mobile-menu" class="mobile-menu md:hidden flex-col px-4 pb-6 gap-4" style="background: rgba(0,0,0,0.97); border-top: 1px solid rgba(245,158,11,0.15);">
-      <a href="index.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Home</a>
-      <a href="party-bus.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1); color: #f59e0b;">Party Bus</a>
-      <a href="jet-skis.html" class="nav-link py-3 text-base block border-b" style="border-color: rgba(245,158,11,0.1);">Jet Skis</a>
-      <a href="pontoon.html" class="nav-link py-3 text-base block">Pontoon</a>
-      <a href="https://calendly.com/YOUR-LINK" target="_blank" class="btn-gold px-5 py-3 rounded text-sm text-center block mt-2">Book Now</a>
+    <div class="mnav" id="mnav">
+      <div class="mnav-inner">
+        <a href="index.html" onclick="closeNav()">Home</a>
+        <a href="index.html#services" onclick="closeNav()">Services</a>
+        <a href="party-bus.html" onclick="closeNav()" style="color:#facc15">Party Bus</a>
+        <a href="jet-skis.html" onclick="closeNav()">Jet Skis</a>
+        <a href="pontoon.html" onclick="closeNav()">Pontoon</a>
+        <a href="index.html#events" onclick="closeNav()">Events</a>
+        <a href="index.html#gallery" onclick="closeNav()">Gallery</a>
+        <a href="index.html#safety" onclick="closeNav()">Safety</a>
+        <div class="mnav-cta">
+          <a href="sms:9108593520" class="ms" onclick="closeNav()">📱 Text Us</a>
+          <a href="https://calendly.com/YOUR-LINK" target="_blank" rel="noopener" class="mb" onclick="closeNav()">Book Now</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -489,14 +587,17 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('mobile-menu').classList.toggle('open');
+    function toggleNav() {
+      const b = document.getElementById('burger');
+      const m = document.getElementById('mnav');
+      b.classList.toggle('open');
+      m.classList.toggle('open');
+      b.setAttribute('aria-expanded', m.classList.contains('open').toString());
     }
-
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.style.background = window.scrollY > 50 ? 'rgba(0,0,0,0.97)' : 'rgba(0,0,0,0.85)';
-    });
+    function closeNav() {
+      document.getElementById('burger').classList.remove('open');
+      document.getElementById('mnav').classList.remove('open');
+    }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
