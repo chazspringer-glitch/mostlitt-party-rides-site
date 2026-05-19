@@ -323,51 +323,39 @@
         <div class="divider-gold max-w-xs mx-auto mt-4"></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="pricing-card rounded-2xl p-6 text-center animate-on-scroll">
-          <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">Starter</div>
-          <div class="font-display text-4xl font-black mb-1" style="color: #f59e0b;">$350</div>
-          <div class="text-sm mb-6" style="color: rgba(255,255,255,0.5);">2 Hours</div>
-          <div class="divider-gold"></div>
-          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.65);">
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Up to 15 guests</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Driver included</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Sound & lighting</li>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+
+        <!-- 2+ Hours -->
+        <div class="pricing-card featured rounded-2xl p-8 text-center animate-on-scroll relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 text-center py-1.5 text-xs font-bold tracking-wider uppercase" style="background: linear-gradient(135deg, #b45309, #f59e0b); color: #000;">Best Rate</div>
+          <div class="mt-6">
+            <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">2+ Hours</div>
+            <div class="font-display text-6xl font-black" style="color: #f59e0b;">$175</div>
+            <div class="text-base font-semibold mt-1 text-white">per hour</div>
+            <div class="divider-gold mt-6"></div>
+            <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.7);">
+              <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Up to 20 guests</li>
+              <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Professional driver</li>
+              <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> LED lighting &amp; sound</li>
+              <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Multiple stops</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 1 Hour -->
+        <div class="pricing-card rounded-2xl p-8 text-center animate-on-scroll" style="transition-delay: 0.15s;">
+          <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">1 Hour</div>
+          <div class="font-display text-6xl font-black" style="color: #f59e0b;">$200</div>
+          <div class="text-base font-semibold mt-1 text-white">flat rate</div>
+          <div class="divider-gold mt-6"></div>
+          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.7);">
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Up to 20 guests</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Professional driver</li>
+            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> LED lighting &amp; sound</li>
             <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> 1 stop</li>
           </ul>
         </div>
 
-        <div class="pricing-card featured rounded-2xl p-6 text-center animate-on-scroll relative overflow-hidden" style="transition-delay: 0.15s;">
-          <div class="absolute top-0 left-0 right-0 text-center py-1.5 text-xs font-bold tracking-wider uppercase" style="background: linear-gradient(135deg, #b45309, #f59e0b); color: #000;">Most Popular</div>
-          <div class="mt-6">
-            <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">Party</div>
-            <div class="font-display text-4xl font-black mb-1" style="color: #f59e0b;">$550</div>
-            <div class="text-sm mb-6" style="color: rgba(255,255,255,0.5);">4 Hours</div>
-          </div>
-          <div class="divider-gold"></div>
-          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.65);">
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Up to 20 guests</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Driver included</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Premium sound & lighting</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> 3 stops</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Red carpet arrival</li>
-          </ul>
-        </div>
-
-        <div class="pricing-card rounded-2xl p-6 text-center animate-on-scroll" style="transition-delay: 0.3s;">
-          <div class="text-sm font-semibold tracking-widest uppercase mb-2" style="color: rgba(245,158,11,0.6);">VIP</div>
-          <div class="font-display text-4xl font-black mb-1" style="color: #f59e0b;">$900</div>
-          <div class="text-sm mb-6" style="color: rgba(255,255,255,0.5);">8 Hours</div>
-          <div class="divider-gold"></div>
-          <ul class="mt-4 space-y-2 text-sm text-left" style="color: rgba(255,255,255,0.65);">
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Up to 20 guests</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Driver + host</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Full AV package</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Unlimited stops</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Decorations included</li>
-            <li class="flex items-center gap-2"><span style="color: #f59e0b;">✓</span> Priority booking</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
